@@ -1,0 +1,1447 @@
+{
+  "note": "Reference vectors for the DEX account multisig signing scheme. These values pin the consensus-sensitive signing bytes.",
+  "authorization_version": 1,
+  "chain_id": 2,
+  "chain_name": "Testnet",
+  "domain": {
+    "name": "Intention",
+    "version": "1",
+    "chainId": 421614,
+    "verifyingContract": "0x0000000000000000000000000000000000000000",
+    "separator": "0x336363b4cfef512fb47e8f066a6a6458a002683e1ce4d10aabadd35b6ba43d93"
+  },
+  "account": "0x0000000000000000000000001111111111111111111111111111111111111111",
+  "authority_epoch": 3,
+  "expires_at_secs": 1800000000,
+  "submit_txn_digest": "0x3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d",
+  "submit_nonce": 99,
+  "operations": [
+    {
+      "name": "00-create_policy",
+      "op_kind": 0,
+      "op_bcs": "0x0003a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3020000000000000000000000000000000000000000000000000000000000000000",
+      "op_id": "0xe34ca163906ec3381b8a35942582fff764d7436aea7fd56c1079f3db0c09ecc2",
+      "submit_operation": "create_policy",
+      "submit_struct_hash": "0xe7e7b5b12420b232c563b299839fadb52cd7bf43e0bb88902935c017e00b0b6b",
+      "approval_digest": null,
+      "typed_data": null
+    },
+    {
+      "name": "01-install_policy",
+      "op_kind": 1,
+      "op_bcs": "0x0103a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a302",
+      "op_id": "0x763cc0a42c1cd5463bd7e993b0de6a03d32c0c413ee1d4d331c67f96e88fa9e0",
+      "submit_operation": "install_policy",
+      "submit_struct_hash": "0xba261fdcabcd7f9fba0207f5f9dbdc91cc32da8a34b18deb04f6b57d85d52e88",
+      "approval_digest": "0x6faa72d7d200faaaaa71e46e59caf32c34436744bebb31a8348919e58c5b4e40",
+      "typed_data": {
+        "types": {
+          "EIP712Domain": [
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "version",
+              "type": "string"
+            },
+            {
+              "name": "chainId",
+              "type": "uint256"
+            },
+            {
+              "name": "verifyingContract",
+              "type": "address"
+            }
+          ],
+          "IntentionMultisig_InstallPolicy": [
+            {
+              "name": "intentionChain",
+              "type": "string"
+            },
+            {
+              "name": "account",
+              "type": "address"
+            },
+            {
+              "name": "authorityEpoch",
+              "type": "uint64"
+            },
+            {
+              "name": "owners",
+              "type": "address[]"
+            },
+            {
+              "name": "threshold",
+              "type": "uint8"
+            },
+            {
+              "name": "expiresAt",
+              "type": "uint64"
+            },
+            {
+              "name": "digest",
+              "type": "bytes32"
+            }
+          ]
+        },
+        "primaryType": "IntentionMultisig_InstallPolicy",
+        "domain": {
+          "name": "Intention",
+          "version": "1",
+          "chainId": 421614,
+          "verifyingContract": "0x0000000000000000000000000000000000000000"
+        },
+        "message": {
+          "intentionChain": "Testnet",
+          "account": "0x1111111111111111111111111111111111111111",
+          "authorityEpoch": "3",
+          "owners": [
+            "0xa1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1",
+            "0xa2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2",
+            "0xa3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3"
+          ],
+          "threshold": "2",
+          "expiresAt": "1800000000",
+          "digest": "0x763cc0a42c1cd5463bd7e993b0de6a03d32c0c413ee1d4d331c67f96e88fa9e0"
+        }
+      }
+    },
+    {
+      "name": "02-update_policy",
+      "op_kind": 2,
+      "op_bcs": "0x0203a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a303",
+      "op_id": "0x1d71e75f9cd285a02868e1c181a585eb9446b279c87c8b1ab55d543e47286965",
+      "submit_operation": "update_policy",
+      "submit_struct_hash": "0xdcea2c72cbf15dd2ea589adf822f510fe983c36e50c92cf1d9394aa745f40ece",
+      "approval_digest": "0x19917969b38c26eb81dc8598ffbee791e3058a54e16ad9d63d8b11b59de32eb9",
+      "typed_data": {
+        "types": {
+          "EIP712Domain": [
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "version",
+              "type": "string"
+            },
+            {
+              "name": "chainId",
+              "type": "uint256"
+            },
+            {
+              "name": "verifyingContract",
+              "type": "address"
+            }
+          ],
+          "IntentionMultisig_UpdatePolicy": [
+            {
+              "name": "intentionChain",
+              "type": "string"
+            },
+            {
+              "name": "account",
+              "type": "address"
+            },
+            {
+              "name": "authorityEpoch",
+              "type": "uint64"
+            },
+            {
+              "name": "owners",
+              "type": "address[]"
+            },
+            {
+              "name": "threshold",
+              "type": "uint8"
+            },
+            {
+              "name": "expiresAt",
+              "type": "uint64"
+            },
+            {
+              "name": "digest",
+              "type": "bytes32"
+            }
+          ]
+        },
+        "primaryType": "IntentionMultisig_UpdatePolicy",
+        "domain": {
+          "name": "Intention",
+          "version": "1",
+          "chainId": 421614,
+          "verifyingContract": "0x0000000000000000000000000000000000000000"
+        },
+        "message": {
+          "intentionChain": "Testnet",
+          "account": "0x1111111111111111111111111111111111111111",
+          "authorityEpoch": "3",
+          "owners": [
+            "0xa1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1",
+            "0xa2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2",
+            "0xa3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3"
+          ],
+          "threshold": "3",
+          "expiresAt": "1800000000",
+          "digest": "0x1d71e75f9cd285a02868e1c181a585eb9446b279c87c8b1ab55d543e47286965"
+        }
+      }
+    },
+    {
+      "name": "03-remove_policy",
+      "op_kind": 3,
+      "op_bcs": "0x0301010101010101010101010101010101010101010101010101010101010101010102020202020202020202020202020202020202020202020202020202020202024000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "op_id": "0xa87a94e70336bc682f41f735cefe049c1ffba03b2a3e5418f8561942b4619d96",
+      "submit_operation": "remove_policy",
+      "submit_struct_hash": "0x53dc37d134d7dbf44f32483b8aecf547b2aa095d612a45b0e183749a47124130",
+      "approval_digest": "0x6844b12c4301158abfa9acdbf89ee8b24b74c75d3ebda286df8944bbf2349b1a",
+      "typed_data": {
+        "types": {
+          "EIP712Domain": [
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "version",
+              "type": "string"
+            },
+            {
+              "name": "chainId",
+              "type": "uint256"
+            },
+            {
+              "name": "verifyingContract",
+              "type": "address"
+            }
+          ],
+          "IntentionMultisig_RemovePolicy": [
+            {
+              "name": "intentionChain",
+              "type": "string"
+            },
+            {
+              "name": "account",
+              "type": "address"
+            },
+            {
+              "name": "authorityEpoch",
+              "type": "uint64"
+            },
+            {
+              "name": "newAuthKey",
+              "type": "bytes32"
+            },
+            {
+              "name": "expiresAt",
+              "type": "uint64"
+            },
+            {
+              "name": "digest",
+              "type": "bytes32"
+            }
+          ]
+        },
+        "primaryType": "IntentionMultisig_RemovePolicy",
+        "domain": {
+          "name": "Intention",
+          "version": "1",
+          "chainId": 421614,
+          "verifyingContract": "0x0000000000000000000000000000000000000000"
+        },
+        "message": {
+          "intentionChain": "Testnet",
+          "account": "0x1111111111111111111111111111111111111111",
+          "authorityEpoch": "3",
+          "newAuthKey": "0x0101010101010101010101010101010101010101010101010101010101010101",
+          "expiresAt": "1800000000",
+          "digest": "0xa87a94e70336bc682f41f735cefe049c1ffba03b2a3e5418f8561942b4619d96"
+        }
+      }
+    },
+    {
+      "name": "04-rotate_key",
+      "op_kind": 4,
+      "op_bcs": "0x0401010101010101010101010101010101010101010101010101010101010101010102020202020202020202020202020202020202020202020202020202020202024000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "op_id": "0xc2042d6245a138467680d2c31bb39e729ed26d8a70ba40c17d8c79b7ea1d46ce",
+      "submit_operation": "rotate_key",
+      "submit_struct_hash": "0x3872b56755a942b8a4c4c33bf1c2f9fd506ffb3b6f7360dd3329eda4f82d479f",
+      "approval_digest": null,
+      "typed_data": null
+    },
+    {
+      "name": "05-execute_transfer",
+      "op_kind": 16,
+      "op_bcs": "0x0500011100000000000000010000000000000000000000005a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a00000000206ba23b0000000000",
+      "op_id": "0x3cdffa7ef321d1c6b0bd9f9bd26dd0da45c1696a9ef9c5cde4286c9405a99483",
+      "submit_operation": "execute_transfer",
+      "submit_struct_hash": "0x0ebe9fc361e38a3e5fec5f070f3442d70b14307e3efe93a880a3af96b585c9c1",
+      "approval_digest": "0x71ec9ac04a786874e1b188d1a5de405bf1177315bee795fd090a65147b826113",
+      "typed_data": {
+        "types": {
+          "EIP712Domain": [
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "version",
+              "type": "string"
+            },
+            {
+              "name": "chainId",
+              "type": "uint256"
+            },
+            {
+              "name": "verifyingContract",
+              "type": "address"
+            }
+          ],
+          "IntentionMultisig_AccountTransfer": [
+            {
+              "name": "intentionChain",
+              "type": "string"
+            },
+            {
+              "name": "account",
+              "type": "address"
+            },
+            {
+              "name": "authorityEpoch",
+              "type": "uint64"
+            },
+            {
+              "name": "toAccount",
+              "type": "address"
+            },
+            {
+              "name": "token",
+              "type": "string"
+            },
+            {
+              "name": "amount",
+              "type": "string"
+            },
+            {
+              "name": "accountType",
+              "type": "string"
+            },
+            {
+              "name": "nonce",
+              "type": "uint64"
+            },
+            {
+              "name": "expiresAt",
+              "type": "uint64"
+            },
+            {
+              "name": "digest",
+              "type": "bytes32"
+            }
+          ]
+        },
+        "primaryType": "IntentionMultisig_AccountTransfer",
+        "domain": {
+          "name": "Intention",
+          "version": "1",
+          "chainId": 421614,
+          "verifyingContract": "0x0000000000000000000000000000000000000000"
+        },
+        "message": {
+          "intentionChain": "Testnet",
+          "account": "0x1111111111111111111111111111111111111111",
+          "authorityEpoch": "3",
+          "toAccount": "0x5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a",
+          "token": "USDC",
+          "amount": "1000.5",
+          "accountType": "perp",
+          "nonce": "17",
+          "expiresAt": "1800000000",
+          "digest": "0x3cdffa7ef321d1c6b0bd9f9bd26dd0da45c1696a9ef9c5cde4286c9405a99483"
+        }
+      }
+    },
+    {
+      "name": "06-execute_transfer",
+      "op_kind": 16,
+      "op_bcs": "0x0500011200000000000000020000000000000000000000005a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a000000000100000000000000000000000000000000000000005b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b00000000020000000000000000",
+      "op_id": "0xcc218e8925edad3dd797bb19eb033e7d5f00df8e55d501f753092de7d8e69222",
+      "submit_operation": "execute_transfer",
+      "submit_struct_hash": "0x0ebe9fc361e38a3e5fec5f070f3442d70b14307e3efe93a880a3af96b585c9c1",
+      "approval_digest": "0x7e4d75bb57b220788d8efd02b79971506ce40327f586d7723750d255b5b0a765",
+      "typed_data": {
+        "types": {
+          "EIP712Domain": [
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "version",
+              "type": "string"
+            },
+            {
+              "name": "chainId",
+              "type": "uint256"
+            },
+            {
+              "name": "verifyingContract",
+              "type": "address"
+            }
+          ],
+          "IntentionMultisig_AccountTransferBatch": [
+            {
+              "name": "intentionChain",
+              "type": "string"
+            },
+            {
+              "name": "account",
+              "type": "address"
+            },
+            {
+              "name": "authorityEpoch",
+              "type": "uint64"
+            },
+            {
+              "name": "transfers",
+              "type": "AccountTransferItem[]"
+            },
+            {
+              "name": "nonce",
+              "type": "uint64"
+            },
+            {
+              "name": "expiresAt",
+              "type": "uint64"
+            },
+            {
+              "name": "digest",
+              "type": "bytes32"
+            }
+          ],
+          "AccountTransferItem": [
+            {
+              "name": "toAccount",
+              "type": "address"
+            },
+            {
+              "name": "token",
+              "type": "string"
+            },
+            {
+              "name": "amount",
+              "type": "string"
+            },
+            {
+              "name": "accountType",
+              "type": "string"
+            }
+          ]
+        },
+        "primaryType": "IntentionMultisig_AccountTransferBatch",
+        "domain": {
+          "name": "Intention",
+          "version": "1",
+          "chainId": 421614,
+          "verifyingContract": "0x0000000000000000000000000000000000000000"
+        },
+        "message": {
+          "intentionChain": "Testnet",
+          "account": "0x1111111111111111111111111111111111111111",
+          "authorityEpoch": "3",
+          "transfers": [
+            {
+              "toAccount": "0x5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a",
+              "token": "USDC",
+              "amount": "0.000001",
+              "accountType": "perp"
+            },
+            {
+              "toAccount": "0x5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b",
+              "token": "USDC",
+              "amount": "0.000002",
+              "accountType": "perp"
+            }
+          ],
+          "nonce": "18",
+          "expiresAt": "1800000000",
+          "digest": "0xcc218e8925edad3dd797bb19eb033e7d5f00df8e55d501f753092de7d8e69222"
+        }
+      }
+    },
+    {
+      "name": "07-execute_transfer",
+      "op_kind": 16,
+      "op_bcs": "0x050002130000000000000001010000000000000000000000006a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a00000000404b4c00000000000000",
+      "op_id": "0x8dbea74cee6ebde71d3e9c86f9507f28faa6b13140105377ab92adae4b5eba6b",
+      "submit_operation": "execute_transfer",
+      "submit_struct_hash": "0x0ebe9fc361e38a3e5fec5f070f3442d70b14307e3efe93a880a3af96b585c9c1",
+      "approval_digest": "0xaf39acbadd7288e78b9ca07cc2ea23f2e0ec89fa39cfe8b4a5193a8d67f3b059",
+      "typed_data": {
+        "types": {
+          "EIP712Domain": [
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "version",
+              "type": "string"
+            },
+            {
+              "name": "chainId",
+              "type": "uint256"
+            },
+            {
+              "name": "verifyingContract",
+              "type": "address"
+            }
+          ],
+          "IntentionMultisig_CrossTransferBurn": [
+            {
+              "name": "intentionChain",
+              "type": "string"
+            },
+            {
+              "name": "account",
+              "type": "address"
+            },
+            {
+              "name": "authorityEpoch",
+              "type": "uint64"
+            },
+            {
+              "name": "toAccount",
+              "type": "address"
+            },
+            {
+              "name": "token",
+              "type": "string"
+            },
+            {
+              "name": "amount",
+              "type": "string"
+            },
+            {
+              "name": "accountType",
+              "type": "string"
+            },
+            {
+              "name": "nonce",
+              "type": "uint64"
+            },
+            {
+              "name": "expiresAt",
+              "type": "uint64"
+            },
+            {
+              "name": "digest",
+              "type": "bytes32"
+            }
+          ]
+        },
+        "primaryType": "IntentionMultisig_CrossTransferBurn",
+        "domain": {
+          "name": "Intention",
+          "version": "1",
+          "chainId": 421614,
+          "verifyingContract": "0x0000000000000000000000000000000000000000"
+        },
+        "message": {
+          "intentionChain": "Testnet",
+          "account": "0x1111111111111111111111111111111111111111",
+          "authorityEpoch": "3",
+          "toAccount": "0x6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a",
+          "token": "USDC",
+          "amount": "5",
+          "accountType": "perp",
+          "nonce": "19",
+          "expiresAt": "1800000000",
+          "digest": "0x8dbea74cee6ebde71d3e9c86f9507f28faa6b13140105377ab92adae4b5eba6b"
+        }
+      }
+    },
+    {
+      "name": "08-execute_transfer",
+      "op_kind": 16,
+      "op_bcs": "0x050002140000000000000001020000000000000000000000006a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a000000000100000000000000000000000000000000000000006b6b6b6b6b6b6b6b6b6b6b6b6b6b6b6b6b6b6b6b0000000002000000000000000000",
+      "op_id": "0x8acc94fe2bf0e39c5fb8b79b6932aee6c1faec948ae596f9718646f3047d61d6",
+      "submit_operation": "execute_transfer",
+      "submit_struct_hash": "0x0ebe9fc361e38a3e5fec5f070f3442d70b14307e3efe93a880a3af96b585c9c1",
+      "approval_digest": "0xcec0c7f897901d94bfe15500c7b4bcdd22e1c255763fde1a0b99a5ee3812dea5",
+      "typed_data": {
+        "types": {
+          "EIP712Domain": [
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "version",
+              "type": "string"
+            },
+            {
+              "name": "chainId",
+              "type": "uint256"
+            },
+            {
+              "name": "verifyingContract",
+              "type": "address"
+            }
+          ],
+          "IntentionMultisig_CrossTransferBurnBatch": [
+            {
+              "name": "intentionChain",
+              "type": "string"
+            },
+            {
+              "name": "account",
+              "type": "address"
+            },
+            {
+              "name": "authorityEpoch",
+              "type": "uint64"
+            },
+            {
+              "name": "transfers",
+              "type": "CrossTransferItem[]"
+            },
+            {
+              "name": "nonce",
+              "type": "uint64"
+            },
+            {
+              "name": "expiresAt",
+              "type": "uint64"
+            },
+            {
+              "name": "digest",
+              "type": "bytes32"
+            }
+          ],
+          "CrossTransferItem": [
+            {
+              "name": "toAccount",
+              "type": "address"
+            },
+            {
+              "name": "token",
+              "type": "string"
+            },
+            {
+              "name": "amount",
+              "type": "string"
+            },
+            {
+              "name": "accountType",
+              "type": "string"
+            }
+          ]
+        },
+        "primaryType": "IntentionMultisig_CrossTransferBurnBatch",
+        "domain": {
+          "name": "Intention",
+          "version": "1",
+          "chainId": 421614,
+          "verifyingContract": "0x0000000000000000000000000000000000000000"
+        },
+        "message": {
+          "intentionChain": "Testnet",
+          "account": "0x1111111111111111111111111111111111111111",
+          "authorityEpoch": "3",
+          "transfers": [
+            {
+              "toAccount": "0x6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a",
+              "token": "USDC",
+              "amount": "0.000001",
+              "accountType": "perp"
+            },
+            {
+              "toAccount": "0x6b6b6b6b6b6b6b6b6b6b6b6b6b6b6b6b6b6b6b6b",
+              "token": "USDC",
+              "amount": "0.000002",
+              "accountType": "perp"
+            }
+          ],
+          "nonce": "20",
+          "expiresAt": "1800000000",
+          "digest": "0x8acc94fe2bf0e39c5fb8b79b6932aee6c1faec948ae596f9718646f3047d61d6"
+        }
+      }
+    },
+    {
+      "name": "09-execute_transfer",
+      "op_kind": 16,
+      "op_bcs": "0x050002150000000000000000010000000000000000000000006a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a0000000001000000000000000000",
+      "op_id": "0x834c70dd3b4852eec02f88d3ab99ea840bad472de3b212e982ca5393268b4604",
+      "submit_operation": "execute_transfer",
+      "submit_struct_hash": "0x0ebe9fc361e38a3e5fec5f070f3442d70b14307e3efe93a880a3af96b585c9c1",
+      "approval_digest": null,
+      "typed_data": null
+    },
+    {
+      "name": "10-execute_transfer",
+      "op_kind": 16,
+      "op_bcs": "0x050000160000000000000001000000000000000000000000111111111111111111111111111111111111111100000000000000000000000012121212121212121212121212121212121212120000000050a06e000000000000",
+      "op_id": "0xd927561b400d85f41cef68cafdf39d8580db87cf37c0e2f4ebdadff1175977ae",
+      "submit_operation": "execute_transfer",
+      "submit_struct_hash": "0x0ebe9fc361e38a3e5fec5f070f3442d70b14307e3efe93a880a3af96b585c9c1",
+      "approval_digest": "0x4de77cb29abadd9f465db1399cf11ae9a0813921a3de3ef071435cb3e8f73e78",
+      "typed_data": {
+        "types": {
+          "EIP712Domain": [
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "version",
+              "type": "string"
+            },
+            {
+              "name": "chainId",
+              "type": "uint256"
+            },
+            {
+              "name": "verifyingContract",
+              "type": "address"
+            }
+          ],
+          "IntentionMultisig_InternalTransfer": [
+            {
+              "name": "intentionChain",
+              "type": "string"
+            },
+            {
+              "name": "account",
+              "type": "address"
+            },
+            {
+              "name": "authorityEpoch",
+              "type": "uint64"
+            },
+            {
+              "name": "fromSubaccount",
+              "type": "address"
+            },
+            {
+              "name": "toSubaccount",
+              "type": "address"
+            },
+            {
+              "name": "token",
+              "type": "string"
+            },
+            {
+              "name": "amount",
+              "type": "string"
+            },
+            {
+              "name": "accountType",
+              "type": "string"
+            },
+            {
+              "name": "nonce",
+              "type": "uint64"
+            },
+            {
+              "name": "expiresAt",
+              "type": "uint64"
+            },
+            {
+              "name": "digest",
+              "type": "bytes32"
+            }
+          ]
+        },
+        "primaryType": "IntentionMultisig_InternalTransfer",
+        "domain": {
+          "name": "Intention",
+          "version": "1",
+          "chainId": 421614,
+          "verifyingContract": "0x0000000000000000000000000000000000000000"
+        },
+        "message": {
+          "intentionChain": "Testnet",
+          "account": "0x1111111111111111111111111111111111111111",
+          "authorityEpoch": "3",
+          "fromSubaccount": "0x1111111111111111111111111111111111111111",
+          "toSubaccount": "0x1212121212121212121212121212121212121212",
+          "token": "USDC",
+          "amount": "7.25",
+          "accountType": "perp",
+          "nonce": "22",
+          "expiresAt": "1800000000",
+          "digest": "0xd927561b400d85f41cef68cafdf39d8580db87cf37c0e2f4ebdadff1175977ae"
+        }
+      }
+    },
+    {
+      "name": "11-execute_transfer",
+      "op_kind": 16,
+      "op_bcs": "0x05000017000000000000000200000000000000000000000011111111111111111111111111111111111111110000000000000000000000001212121212121212121212121212121212121212000000000100000000000000000000000000000000000000001111111111111111111111111111111111111111000000000000000000000000131313131313131313131313131313131313131300000000020000000000000000",
+      "op_id": "0x3b8524a6016a83d96efa99e9681a628c1df7351bc95cd061edf0c058b8d80a99",
+      "submit_operation": "execute_transfer",
+      "submit_struct_hash": "0x0ebe9fc361e38a3e5fec5f070f3442d70b14307e3efe93a880a3af96b585c9c1",
+      "approval_digest": "0x1cb68d0f5c8dce11c49ce8ca174d62912ae1c0929cfead5372d9a342b9c4a69a",
+      "typed_data": {
+        "types": {
+          "EIP712Domain": [
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "version",
+              "type": "string"
+            },
+            {
+              "name": "chainId",
+              "type": "uint256"
+            },
+            {
+              "name": "verifyingContract",
+              "type": "address"
+            }
+          ],
+          "IntentionMultisig_InternalTransferBatch": [
+            {
+              "name": "intentionChain",
+              "type": "string"
+            },
+            {
+              "name": "account",
+              "type": "address"
+            },
+            {
+              "name": "authorityEpoch",
+              "type": "uint64"
+            },
+            {
+              "name": "transfers",
+              "type": "InternalTransferItem[]"
+            },
+            {
+              "name": "nonce",
+              "type": "uint64"
+            },
+            {
+              "name": "expiresAt",
+              "type": "uint64"
+            },
+            {
+              "name": "digest",
+              "type": "bytes32"
+            }
+          ],
+          "InternalTransferItem": [
+            {
+              "name": "fromSubaccount",
+              "type": "address"
+            },
+            {
+              "name": "toSubaccount",
+              "type": "address"
+            },
+            {
+              "name": "token",
+              "type": "string"
+            },
+            {
+              "name": "amount",
+              "type": "string"
+            },
+            {
+              "name": "accountType",
+              "type": "string"
+            }
+          ]
+        },
+        "primaryType": "IntentionMultisig_InternalTransferBatch",
+        "domain": {
+          "name": "Intention",
+          "version": "1",
+          "chainId": 421614,
+          "verifyingContract": "0x0000000000000000000000000000000000000000"
+        },
+        "message": {
+          "intentionChain": "Testnet",
+          "account": "0x1111111111111111111111111111111111111111",
+          "authorityEpoch": "3",
+          "transfers": [
+            {
+              "fromSubaccount": "0x1111111111111111111111111111111111111111",
+              "toSubaccount": "0x1212121212121212121212121212121212121212",
+              "token": "USDC",
+              "amount": "0.000001",
+              "accountType": "perp"
+            },
+            {
+              "fromSubaccount": "0x1111111111111111111111111111111111111111",
+              "toSubaccount": "0x1313131313131313131313131313131313131313",
+              "token": "USDC",
+              "amount": "0.000002",
+              "accountType": "perp"
+            }
+          ],
+          "nonce": "23",
+          "expiresAt": "1800000000",
+          "digest": "0x3b8524a6016a83d96efa99e9681a628c1df7351bc95cd061edf0c058b8d80a99"
+        }
+      }
+    },
+    {
+      "name": "12-execute_transfer",
+      "op_kind": 16,
+      "op_bcs": "0x050003180000000000000001000000000000000000000000111111111111111111111111111111111111111100000000010000000000000000",
+      "op_id": "0x400e7271e1993e2972711ee1a00304bb806f5849a71ccdb201a51d502e0cf478",
+      "submit_operation": "execute_transfer",
+      "submit_struct_hash": "0x0ebe9fc361e38a3e5fec5f070f3442d70b14307e3efe93a880a3af96b585c9c1",
+      "approval_digest": null,
+      "typed_data": null
+    },
+    {
+      "name": "13-execute_agent",
+      "op_kind": 18,
+      "op_bcs": "0x05021900000000000000000c6d61726b65742d6d616b65720000000000000000000000007a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a00b33f7100000000",
+      "op_id": "0xd1f0521eeb2389a00629c86d8dc879c0925af76315ee96368b0a15f019a0e350",
+      "submit_operation": "execute_agent",
+      "submit_struct_hash": "0x5155129b40fcd1b4d70a65793a9dba5a6cc9c377d780a1e470d724f876c658b2",
+      "approval_digest": "0x68fc0f3f0bfbaa2ec4d811177bb56e59b56237cd7f13e6f1cf6fc5030a1ab9c4",
+      "typed_data": {
+        "types": {
+          "EIP712Domain": [
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "version",
+              "type": "string"
+            },
+            {
+              "name": "chainId",
+              "type": "uint256"
+            },
+            {
+              "name": "verifyingContract",
+              "type": "address"
+            }
+          ],
+          "IntentionMultisig_ApproveAgent": [
+            {
+              "name": "intentionChain",
+              "type": "string"
+            },
+            {
+              "name": "account",
+              "type": "address"
+            },
+            {
+              "name": "authorityEpoch",
+              "type": "uint64"
+            },
+            {
+              "name": "agentAddress",
+              "type": "address"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "expiryTimestamp",
+              "type": "uint64"
+            },
+            {
+              "name": "nonce",
+              "type": "uint64"
+            },
+            {
+              "name": "expiresAt",
+              "type": "uint64"
+            },
+            {
+              "name": "digest",
+              "type": "bytes32"
+            }
+          ]
+        },
+        "primaryType": "IntentionMultisig_ApproveAgent",
+        "domain": {
+          "name": "Intention",
+          "version": "1",
+          "chainId": 421614,
+          "verifyingContract": "0x0000000000000000000000000000000000000000"
+        },
+        "message": {
+          "intentionChain": "Testnet",
+          "account": "0x1111111111111111111111111111111111111111",
+          "authorityEpoch": "3",
+          "agentAddress": "0x7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a",
+          "name": "market-maker",
+          "expiryTimestamp": "1900000000",
+          "nonce": "25",
+          "expiresAt": "1800000000",
+          "digest": "0xd1f0521eeb2389a00629c86d8dc879c0925af76315ee96368b0a15f019a0e350"
+        }
+      }
+    },
+    {
+      "name": "14-execute_agent",
+      "op_kind": 18,
+      "op_bcs": "0x05021a00000000000000010c6d61726b65742d6d616b6572",
+      "op_id": "0x683a3cf5ff2c84702a0183e7ffe6d694ef1d515916646b61dbbb655dac3584c2",
+      "submit_operation": "execute_agent",
+      "submit_struct_hash": "0x5155129b40fcd1b4d70a65793a9dba5a6cc9c377d780a1e470d724f876c658b2",
+      "approval_digest": "0x20c0da8ac2201a77985a5c239a6f0052f7f6bfcea6cb89bb1271d7834863d0a6",
+      "typed_data": {
+        "types": {
+          "EIP712Domain": [
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "version",
+              "type": "string"
+            },
+            {
+              "name": "chainId",
+              "type": "uint256"
+            },
+            {
+              "name": "verifyingContract",
+              "type": "address"
+            }
+          ],
+          "IntentionMultisig_RevokeAgent": [
+            {
+              "name": "intentionChain",
+              "type": "string"
+            },
+            {
+              "name": "account",
+              "type": "address"
+            },
+            {
+              "name": "authorityEpoch",
+              "type": "uint64"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "nonce",
+              "type": "uint64"
+            },
+            {
+              "name": "expiresAt",
+              "type": "uint64"
+            },
+            {
+              "name": "digest",
+              "type": "bytes32"
+            }
+          ]
+        },
+        "primaryType": "IntentionMultisig_RevokeAgent",
+        "domain": {
+          "name": "Intention",
+          "version": "1",
+          "chainId": 421614,
+          "verifyingContract": "0x0000000000000000000000000000000000000000"
+        },
+        "message": {
+          "intentionChain": "Testnet",
+          "account": "0x1111111111111111111111111111111111111111",
+          "authorityEpoch": "3",
+          "name": "market-maker",
+          "nonce": "26",
+          "expiresAt": "1800000000",
+          "digest": "0x683a3cf5ff2c84702a0183e7ffe6d694ef1d515916646b61dbbb655dac3584c2"
+        }
+      }
+    },
+    {
+      "name": "15-execute_agent",
+      "op_kind": 18,
+      "op_bcs": "0x05021d0000000000000002",
+      "op_id": "0xee20e2ba2928a3c191dff8f1244c7b335fe8064ba8a11ad628abac979e18333a",
+      "submit_operation": "execute_agent",
+      "submit_struct_hash": "0x5155129b40fcd1b4d70a65793a9dba5a6cc9c377d780a1e470d724f876c658b2",
+      "approval_digest": "0x406894fc48ab12c87bd371bd9e82c4edfec223f47a890e737f0649c9748b600e",
+      "typed_data": {
+        "types": {
+          "EIP712Domain": [
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "version",
+              "type": "string"
+            },
+            {
+              "name": "chainId",
+              "type": "uint256"
+            },
+            {
+              "name": "verifyingContract",
+              "type": "address"
+            }
+          ],
+          "IntentionMultisig_RevokeAllAgents": [
+            {
+              "name": "intentionChain",
+              "type": "string"
+            },
+            {
+              "name": "account",
+              "type": "address"
+            },
+            {
+              "name": "authorityEpoch",
+              "type": "uint64"
+            },
+            {
+              "name": "nonce",
+              "type": "uint64"
+            },
+            {
+              "name": "expiresAt",
+              "type": "uint64"
+            },
+            {
+              "name": "digest",
+              "type": "bytes32"
+            }
+          ]
+        },
+        "primaryType": "IntentionMultisig_RevokeAllAgents",
+        "domain": {
+          "name": "Intention",
+          "version": "1",
+          "chainId": 421614,
+          "verifyingContract": "0x0000000000000000000000000000000000000000"
+        },
+        "message": {
+          "intentionChain": "Testnet",
+          "account": "0x1111111111111111111111111111111111111111",
+          "authorityEpoch": "3",
+          "nonce": "29",
+          "expiresAt": "1800000000",
+          "digest": "0xee20e2ba2928a3c191dff8f1244c7b335fe8064ba8a11ad628abac979e18333a"
+        }
+      }
+    },
+    {
+      "name": "16-execute_create_subaccount",
+      "op_kind": 19,
+      "op_bcs": "0x05031b00000000000000087472656173757279",
+      "op_id": "0x90c061199947e21a48a45912bbdf7fbb9a0efc2a801fc4628125647182f38cd5",
+      "submit_operation": "execute_create_subaccount",
+      "submit_struct_hash": "0x0d43381e6a50cb335ba8ff7a8d38c3c5eafdac9f58f94a74c7bc017b067beb41",
+      "approval_digest": "0xfb79b50c8a1a5603b9ff491278c1b5cb03328bee6244adfdc2e20c1026cc7cca",
+      "typed_data": {
+        "types": {
+          "EIP712Domain": [
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "version",
+              "type": "string"
+            },
+            {
+              "name": "chainId",
+              "type": "uint256"
+            },
+            {
+              "name": "verifyingContract",
+              "type": "address"
+            }
+          ],
+          "IntentionMultisig_CreateSubAccount": [
+            {
+              "name": "intentionChain",
+              "type": "string"
+            },
+            {
+              "name": "account",
+              "type": "address"
+            },
+            {
+              "name": "authorityEpoch",
+              "type": "uint64"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "nonce",
+              "type": "uint64"
+            },
+            {
+              "name": "expiresAt",
+              "type": "uint64"
+            },
+            {
+              "name": "digest",
+              "type": "bytes32"
+            }
+          ]
+        },
+        "primaryType": "IntentionMultisig_CreateSubAccount",
+        "domain": {
+          "name": "Intention",
+          "version": "1",
+          "chainId": 421614,
+          "verifyingContract": "0x0000000000000000000000000000000000000000"
+        },
+        "message": {
+          "intentionChain": "Testnet",
+          "account": "0x1111111111111111111111111111111111111111",
+          "authorityEpoch": "3",
+          "name": "treasury",
+          "nonce": "27",
+          "expiresAt": "1800000000",
+          "digest": "0x90c061199947e21a48a45912bbdf7fbb9a0efc2a801fc4628125647182f38cd5"
+        }
+      }
+    },
+    {
+      "name": "17-execute_vault",
+      "op_kind": 17,
+      "op_bcs": "0x05010103000000000000001c0000000000000080969800000000000000000000000000",
+      "op_id": "0xc80598f18853ddade641ca4ac0c9fd64f2fafa444c398cc4b77d471167fec55a",
+      "submit_operation": "execute_vault",
+      "submit_struct_hash": "0x2c669cc636a453b138087d364f27723a1b4e97df1f3ab8a1fe9e856e385701fc",
+      "approval_digest": "0x672d302f32a8b56be34d334de2fe88f79d3226ad3ebf12d230883d849f65534a",
+      "typed_data": {
+        "types": {
+          "EIP712Domain": [
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "version",
+              "type": "string"
+            },
+            {
+              "name": "chainId",
+              "type": "uint256"
+            },
+            {
+              "name": "verifyingContract",
+              "type": "address"
+            }
+          ],
+          "IntentionMultisig_VaultOperation": [
+            {
+              "name": "intentionChain",
+              "type": "string"
+            },
+            {
+              "name": "account",
+              "type": "address"
+            },
+            {
+              "name": "authorityEpoch",
+              "type": "uint64"
+            },
+            {
+              "name": "operation",
+              "type": "string"
+            },
+            {
+              "name": "nonce",
+              "type": "uint64"
+            },
+            {
+              "name": "expiresAt",
+              "type": "uint64"
+            },
+            {
+              "name": "digest",
+              "type": "bytes32"
+            }
+          ]
+        },
+        "primaryType": "IntentionMultisig_VaultOperation",
+        "domain": {
+          "name": "Intention",
+          "version": "1",
+          "chainId": 421614,
+          "verifyingContract": "0x0000000000000000000000000000000000000000"
+        },
+        "message": {
+          "intentionChain": "Testnet",
+          "account": "0x1111111111111111111111111111111111111111",
+          "authorityEpoch": "3",
+          "operation": "vault_deposit",
+          "nonce": "28",
+          "expiresAt": "1800000000",
+          "digest": "0xc80598f18853ddade641ca4ac0c9fd64f2fafa444c398cc4b77d471167fec55a"
+        }
+      }
+    }
+  ],
+  "create": {
+    "creator": "0x0000000000000000000000007c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c",
+    "owners": [
+      "0xa1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1",
+      "0xa2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2",
+      "0xa3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3"
+    ],
+    "threshold": 2,
+    "salt": "0x0404040404040404040404040404040404040404040404040404040404040404",
+    "authority_epoch": 0,
+    "op_bcs": "0x0003a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3020404040404040404040404040404040404040404040404040404040404040404",
+    "op_id": "0x2808a0b24441a845823f87f6c22bba5b30dbe31a506ec5f00c3b5302c4b98f0b",
+    "approval_digest": "0x8ced83ddac7144df6074f319797036e5bcc070b11baa0dcb9cfed8fc69b51a8e",
+    "typed_data": {
+      "types": {
+        "EIP712Domain": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "type": "string"
+          },
+          {
+            "name": "chainId",
+            "type": "uint256"
+          },
+          {
+            "name": "verifyingContract",
+            "type": "address"
+          }
+        ],
+        "IntentionMultisig_CreatePolicy": [
+          {
+            "name": "intentionChain",
+            "type": "string"
+          },
+          {
+            "name": "account",
+            "type": "address"
+          },
+          {
+            "name": "creator",
+            "type": "address"
+          },
+          {
+            "name": "owners",
+            "type": "address[]"
+          },
+          {
+            "name": "threshold",
+            "type": "uint8"
+          },
+          {
+            "name": "expiresAt",
+            "type": "uint64"
+          },
+          {
+            "name": "digest",
+            "type": "bytes32"
+          }
+        ]
+      },
+      "primaryType": "IntentionMultisig_CreatePolicy",
+      "domain": {
+        "name": "Intention",
+        "version": "1",
+        "chainId": 421614,
+        "verifyingContract": "0x0000000000000000000000000000000000000000"
+      },
+      "message": {
+        "intentionChain": "Testnet",
+        "account": "0x1111111111111111111111111111111111111111",
+        "creator": "0x7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c",
+        "owners": [
+          "0xa1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1",
+          "0xa2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2",
+          "0xa3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3"
+        ],
+        "threshold": "2",
+        "expiresAt": "1800000000",
+        "digest": "0x2808a0b24441a845823f87f6c22bba5b30dbe31a506ec5f00c3b5302c4b98f0b"
+      }
+    },
+    "derived_address": "0x000000000000000000000000e7fff47cbfa3957f8d7fa7c02f1cef17aa8e2f99"
+  },
+  "key_challenge": {
+    "authority_epoch": 2,
+    "new_auth_key": "0x0909090909090909090909090909090909090909090909090909090909090909",
+    "op_kind": 3,
+    "digest": "0xf8859aba9bf690d889279a326c75483cdb28e219f1eceda71bab85a5b94e7241",
+    "typed_data": {
+      "types": {
+        "EIP712Domain": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "type": "string"
+          },
+          {
+            "name": "chainId",
+            "type": "uint256"
+          },
+          {
+            "name": "verifyingContract",
+            "type": "address"
+          }
+        ],
+        "IntentionMultisig_KeyChallenge": [
+          {
+            "name": "intentionChain",
+            "type": "string"
+          },
+          {
+            "name": "account",
+            "type": "address"
+          },
+          {
+            "name": "authorityEpoch",
+            "type": "uint64"
+          },
+          {
+            "name": "newAuthKey",
+            "type": "bytes32"
+          },
+          {
+            "name": "operation",
+            "type": "uint8"
+          }
+        ]
+      },
+      "primaryType": "IntentionMultisig_KeyChallenge",
+      "domain": {
+        "name": "Intention",
+        "version": "1",
+        "chainId": 421614,
+        "verifyingContract": "0x0000000000000000000000000000000000000000"
+      },
+      "message": {
+        "intentionChain": "Testnet",
+        "account": "0x1111111111111111111111111111111111111111",
+        "authorityEpoch": "2",
+        "newAuthKey": "0x0909090909090909090909090909090909090909090909090909090909090909",
+        "operation": "3"
+      }
+    },
+    "ed25519_challenge_bcs": "0x020100000000000000000000000011111111111111111111111111111111111111110200000000000000090909090909090909090909090909090909090909090909090909090909090903"
+  }
+}

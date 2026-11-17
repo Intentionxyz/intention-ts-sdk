@@ -1,0 +1,43 @@
+{
+  "ReferralReservedCodesUpdatedEvent": {"revision":"1","effective_block_height":"101","codes":["INTENTION"]},
+  "ReferralCodeRegisteredEvent": {
+    "master": "0x0000000000000000000000000000000000000001",
+    "code": "ABC123"
+  },
+  "ReferralBoundEvent": {
+    "referee_master": "0x0000000000000000000000000000000000000002",
+    "referrer_master": "0x0000000000000000000000000000000000000001",
+    "code": "ABC123",
+    "volume_at_bind_usd": "500000000"
+  },
+  "ReferralConfigUpdatedEvent": {
+    "config": {
+      "version": 1,
+      "revision": "1",
+      "effective_block_height": "101",
+      "parameters": {
+        "invitee_fee_discount_ppm": 40000,
+        "commission_rate_ppm": 100000,
+        "referral_threshold_volume": "1000000000",
+        "discount_volume_cap": "25000000000",
+        "commission_volume_cap": "1000000000000000",
+        "min_claim_amount": "1000000"
+      },
+      "previous_parameters": null
+    }
+  },
+  "ReferralRewardsClaimedEvent": {
+    "master": "0x0000000000000000000000000000000000000001",
+    "amount": "1000000",
+    "total_claimed": "1000000"
+  },
+  "DexReferralFeeEvent": {
+    "block_height": "103",
+    "symbol_id": 7,
+    "fill_order_id": "9",
+    "master": "0x0000000000000000000000000000000000000002",
+    "sub_address": "0x0000000000000000000000000000000000000000",
+    "discount": "450000",
+    "commission": "1080000"
+  }
+}

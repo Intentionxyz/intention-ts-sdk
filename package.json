@@ -1,0 +1,62 @@
+{
+    "name": "intention-ts-sdk",
+    "description": "TypeScript SDK for Intention DEX",
+    "version": "4.0.0-rc.3",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Intentionxyz/intention-ts-sdk.git"
+    },
+    "homepage": "https://github.com/Intentionxyz/intention-ts-sdk#readme",
+    "bugs": {
+        "url": "https://github.com/Intentionxyz/intention-ts-sdk/issues"
+    },
+    "packageManager": "pnpm@8.15.1",
+    "engines": {
+        "node": ">=20.0.0"
+    },
+    "main": "dist/common/index.js",
+    "module": "dist/esm/index.mjs",
+    "types": "dist/common/index.d.ts",
+    "exports": {
+        ".": {
+            "require": {
+                "types": "./dist/common/index.d.ts",
+                "default": "./dist/common/index.js"
+            },
+            "import": {
+                "types": "./dist/common/index.d.ts",
+                "default": "./dist/esm/index.mjs"
+            }
+        },
+        "./package.json": "./package.json"
+    },
+    "files": [
+        "dist",
+        "docs/simplified-integration-guide.md",
+        "docs/multisig-accounts.md",
+        "docs/referral.md",
+        "docs/vault-events-v1.md"
+    ],
+    "scripts": {
+        "build:clean": "rm -rf dist",
+        "build:types": "tsc -p tsconfig.build.json --declarationDir dist/common",
+        "build": "npm run build:clean && tsup && npm run build:types",
+        "dev": "tsup --watch",
+        "lint": "tsc --noEmit",
+        "test": "npm run build && node --test tests/*.test.mjs && tsx --test tests/*.test.ts",
+        "example:e2e": "tsx examples/e2e-order-lifecycle.ts",
+        "prepare": "npm run build"
+    },
+    "dependencies": {
+        "@noble/curves": "^1.3.0",
+        "@noble/hashes": "^1.3.0",
+        "lossless-json": "4.3.3",
+        "tsup": "^8.5.0",
+        "typescript": "^5.8.3"
+    },
+    "devDependencies": {
+        "@types/node": "^20.0.0",
+        "tsx": "^4.23.0"
+    }
+}

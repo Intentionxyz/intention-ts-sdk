@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "bcs_hex": "010000000000000001010101010101010101010101010101010101010101010101010101010101010000000000000000000000000000000000000000000000000000000000000000000000000700000000020000000000000003000000000000000200000000000000010000000000000000000000000000006400000000000000c8000000000000000000000000000000dc000000000000000000000000000000b4000000000000000000000000000000ecffffffffffffffffffffffffffffffecffffffffffffffffffffffffffffffd8ffffffffffffffffffffffffffffff0100000000000000000000000000000009000000000000002a0000000000000000000000",
+  "fields": [
+    {
+      "name": "schema_version",
+      "type": "u64",
+      "value": "1"
+    },
+    {
+      "name": "vault_account",
+      "type": "address",
+      "value": "0101010101010101010101010101010101010101010101010101010101010101"
+    },
+    {
+      "name": "sub_address",
+      "type": "address",
+      "value": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "name": "subaccount_number",
+      "type": "u32",
+      "value": "0"
+    },
+    {
+      "name": "symbol_id",
+      "type": "u32",
+      "value": "7"
+    },
+    {
+      "name": "status",
+      "type": "u8",
+      "value": "0"
+    },
+    {
+      "name": "quantums",
+      "type": "u64",
+      "value": "2"
+    },
+    {
+      "name": "before_long_quantums",
+      "type": "u64",
+      "value": "3"
+    },
+    {
+      "name": "before_short_quantums",
+      "type": "u64",
+      "value": "2"
+    },
+    {
+      "name": "after_long_quantums",
+      "type": "u64",
+      "value": "1"
+    },
+    {
+      "name": "after_short_quantums",
+      "type": "u64",
+      "value": "0"
+    },
+    {
+      "name": "price",
+      "type": "u64",
+      "value": "100"
+    },
+    {
+      "name": "offset_quote",
+      "type": "u128",
+      "value": "200"
+    },
+    {
+      "name": "long_released_cost",
+      "type": "u128",
+      "value": "220"
+    },
+    {
+      "name": "short_released_cost",
+      "type": "u128",
+      "value": "180"
+    },
+    {
+      "name": "long_realized_pnl_bits",
+      "type": "u128",
+      "value": "340282366920938463463374607431768211436"
+    },
+    {
+      "name": "short_realized_pnl_bits",
+      "type": "u128",
+      "value": "340282366920938463463374607431768211436"
+    },
+    {
+      "name": "total_realized_pnl_bits",
+      "type": "u128",
+      "value": "340282366920938463463374607431768211416"
+    },
+    {
+      "name": "total_fee",
+      "type": "u128",
+      "value": "1"
+    },
+    {
+      "name": "block_height",
+      "type": "u64",
+      "value": "9"
+    },
+    {
+      "name": "timestamp_us",
+      "type": "u64",
+      "value": "42"
+    },
+    {
+      "name": "action_seq",
+      "type": "u32",
+      "value": "0"
+    }
+  ]
+}
