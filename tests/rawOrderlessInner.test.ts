@@ -118,7 +118,7 @@ describe("RawOrderlessInner", () => {
             DexOrderlessTxVariant.DexUserConfig,
             DexOrderlessTxVariant.DexTransfer,
             DexOrderlessTxVariant.DexAgent,
-            DexOrderlessTxVariant.Vault,
+            DexOrderlessTxVariant.Multisig,
         ]) {
             const got = serialize(
                 new DexOrderlessTx(variant, new RawOrderlessInner(new Uint8Array([0x77])), proof),

@@ -34,7 +34,6 @@ import {
     type IntentionWebSocketClientOptions,
     type WebSocketSubscriptionHandlers,
 } from "./websocketClient";
-import { VaultClient } from "./vaultClient";
 import { ReferralClient } from "./referralClient";
 
 function address(value: AccountAddressInput): AccountAddress {
@@ -506,8 +505,6 @@ export class IntentionClient {
     readonly submitOptions?: DexOrderlessSubmitOptions;
     readonly markets: IntentionMarketsClient;
     readonly accounts: IntentionAccountsClient;
-    /** Read-only Vault queries. Vault transaction helpers are intentionally not exposed. */
-    readonly vaults: VaultClient;
     readonly referrals: ReferralClient;
 
     private readonly websocketOptions?: IntentionWebSocketClientOptions;
@@ -526,7 +523,6 @@ export class IntentionClient {
             signer,
             submitOptions,
         });
-        this.vaults = new VaultClient(this.intention);
         this.referrals=new ReferralClient(this.intention,signer,submitOptions);
     }
 

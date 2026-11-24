@@ -30,7 +30,6 @@ import {
     MultisigOpVariant,
 } from "../types/enums";
 import { BridgeSignature, CreateSubAccount, DexAgentTx, DexTransferTx } from "./dexPayloads";
-import { VaultTx } from "./vaultPayloads";
 
 // --- Constants ------------------------------------------------------------
 
@@ -232,7 +231,7 @@ export class KeyProofEd25519 extends KeyProof {
 // --- Gated payloads -------------------------------------------------------
 
 /** The inner transaction types a policy account can be made to execute. */
-export type GatedPayloadInner = DexTransferTx | VaultTx | DexAgentTx | CreateSubAccount;
+export type GatedPayloadInner = DexTransferTx | DexAgentTx | CreateSubAccount;
 
 /**
  * One payload executed as the account, with the owners' approval.
@@ -254,10 +253,6 @@ export class GatedPayload extends Serializable {
 
     static transfer(inner: DexTransferTx): GatedPayload {
         return new GatedPayload(GatedPayloadVariant.DexTransfer, inner);
-    }
-
-    static vault(inner: VaultTx): GatedPayload {
-        return new GatedPayload(GatedPayloadVariant.Vault, inner);
     }
 
     static agent(inner: DexAgentTx): GatedPayload {
@@ -561,8 +556,6 @@ export function submitOperationName(op: MultisigOp): string {
             switch ((op as MultisigOpExecute).payload.variant) {
                 case GatedPayloadVariant.DexTransfer:
                     return "execute_transfer";
-                case GatedPayloadVariant.Vault:
-                    return "execute_vault";
                 case GatedPayloadVariant.DexAgent:
                     return "execute_agent";
                 case GatedPayloadVariant.CreateSubAccount:
@@ -594,9 +587,8 @@ export function deriveMultisigAccountAddress(
         ]),
     );
     const address = new Uint8Array(32);
-    // The leading twenty bytes, right-aligned: the same shape as a vault account
-    // and a subaccount, which keeps every derived address EVM-formatted so a
-    // wallet can render it.
+    // The leading twenty bytes, right-aligned: the same shape as a subaccount,
+    // which keeps every derived address EVM-formatted so a wallet can render it.
     address.set(digest.slice(0, 20), 12);
     return new AccountAddress(address);
 }

@@ -61,13 +61,6 @@ import {
     TransactionPayloadDexOrderless,
     TriggerPriceType,
     UserSymbolLeverage,
-    VaultCreateTx,
-    VaultDepositTx,
-    VaultSetStatusTx,
-    VaultStatus,
-    VaultTx,
-    VaultTxVariant,
-    VaultWithdrawTx,
 } from "../dist/esm/index.mjs";
 
 const NODE_URL = "http://node.test";
@@ -240,10 +233,6 @@ function userConfigInner(variant, inner) {
     );
 }
 
-function vaultInner(vaultTx) {
-    return new DexOrderlessTx(DexOrderlessTxVariant.Vault, vaultTx);
-}
-
 // name -> { family, make: () => DexOrderlessTx }
 const CASES = [
     { name: "dex_place", family: "dex_payload", make: placeInner },
@@ -348,33 +337,6 @@ const CASES = [
                 new AdjustIsolatedMargin(NONCE, AccountAddress.ZERO, 7, 100000n, -50000n),
             ),
     },
-    {
-        name: "vault_deposit",
-        family: "vault_payload",
-        make: () => vaultInner(new VaultTx(VaultTxVariant.Deposit, new VaultDepositTx(7n, NONCE, 100000000n))),
-    },
-    {
-        name: "vault_create",
-        family: "vault_payload",
-        make: () =>
-            vaultInner(
-                new VaultTx(
-                    VaultTxVariant.Create,
-                    new VaultCreateTx(NONCE, 86400, true, 5000000000n, "alpha-vault", "delta neutral"),
-                ),
-            ),
-    },
-    {
-        name: "vault_withdraw",
-        family: "vault_payload",
-        make: () => vaultInner(new VaultTx(VaultTxVariant.Withdraw, new VaultWithdrawTx(7n, NONCE, 250000n))),
-    },
-    {
-        name: "vault_set_status",
-        family: "vault_payload",
-        make: () =>
-            vaultInner(new VaultTx(VaultTxVariant.SetStatus, new VaultSetStatusTx(NONCE, 7n, VaultStatus.Paused))),
-    },
 ];
 
 const EXPECTED_FAMILIES = [
@@ -382,7 +344,6 @@ const EXPECTED_FAMILIES = [
     "dex_transfer_payload",
     "dex_agent_payload",
     "dex_user_config_payload",
-    "vault_payload",
 ];
 
 function withMockFetch(handler, run) {

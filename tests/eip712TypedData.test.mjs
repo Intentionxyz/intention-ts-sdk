@@ -205,7 +205,7 @@ test("a multisig submission is wallet-signed as an envelope", () => {
         [new Uint8Array(20).fill(0xa1), new Uint8Array(20).fill(0xa2), new Uint8Array(20).fill(0xa3)],
         2,
     );
-    const txn = raw(6, new DexMultisigTx(11n, addr("0x001ebbde289635ae8ad2f2ec1080af75e00705f9"), op));
+    const txn = raw(5, new DexMultisigTx(11n, addr("0x001ebbde289635ae8ad2f2ec1080af75e00705f9"), op));
     const td = buildTypedData(txn);
     assert.equal(td.primaryType, "IntentionTransaction_MultisigSubmit");
     assert.equal(td.message.account, "0x001ebbde289635ae8ad2f2ec1080af75e00705f9");

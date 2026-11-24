@@ -89,12 +89,11 @@ account now.
 
 ## 4. Making a multisig account act: `Execute`
 
-Only these four can be authorized by the threshold. Placing and cancelling
+Only these three can be authorized by the threshold. Placing and cancelling
 orders are **not** among them; that path belongs to agents only.
 
 ```ts
 GatedPayload.transfer(dexTransferTx)        // transfer / withdrawal / move between subaccounts
-GatedPayload.vault(vaultTx)                 // vault operations
 GatedPayload.agent(dexAgentTx)              // grant / revoke / revoke all
 GatedPayload.createSubAccount(createSubAcc) // open a subaccount
 ```
@@ -171,8 +170,9 @@ travel only on the BCS path. The JSON view is an audit summary for an explorer
 that were signed.
 
 The cross-language fixed vectors are `multisig_signing_vectors.json` in the
-chain, and `tests/fixtures/multisig_signing_vectors.json` here is a copy of it.
+chain, and `tests/fixtures/multisig_signing_vectors.json` here is a copy of it
+without the validator cases, which this SDK does not build.
 `tests/multisigVectors.test.ts` reproduces, byte for byte, the BCS, operation id,
-approval digest and signing document of 18 operations, plus the derived address
+approval digest and signing document of 17 operations, plus the derived address
 and the challenge digest. Changing any one of those bytes invalidates every owner
 signature already collected.

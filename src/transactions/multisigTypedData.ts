@@ -37,7 +37,6 @@ import {
     DexTransferVariant,
     GatedPayloadVariant,
     MultisigOpVariant,
-    VaultTxVariant,
 } from "../types/enums";
 import {
     AccountTransferItem,
@@ -75,7 +74,6 @@ import {
     TypeSpec,
     TYPES,
 } from "./typedData";
-import { VaultTx } from "./vaultPayloads";
 
 const F = (name: string, type: string): TypedDataField => ({ name, type });
 
@@ -189,17 +187,6 @@ export const MULTISIG_TYPES = {
         refs: {},
     },
     /**
-     * Vault operations are not rendered field by field: the single-signer path
-     * signs them opaquely too, and inventing a dialog for every vault variant is
-     * a larger piece of work than this needs. The operation name and the nonce
-     * are shown; everything else is covered by `digest`.
-     */
-    VaultOperation: {
-        primary: "IntentionMultisig_VaultOperation",
-        fields: [CHAIN, ACCOUNT, EPOCH, F("operation", "string"), NONCE, EXPIRES, DIGEST],
-        refs: {},
-    },
-    /**
      * The submitting owner's envelope, signed as part of the transaction.
      *
      * Defined with the other `IntentionTransaction_*` types rather than here,
@@ -224,26 +211,6 @@ function hex(bytes: Uint8Array): `0x${string}` {
 
 function str(value: bigint | number): string {
     return value.toString();
-}
-
-/**
- * The owner-facing name of the vault operation inside a gated payload. Stable
- * strings: they are hashed.
- */
-function vaultOperationName(tx: VaultTx): string {
-    switch (tx.variant) {
-        case VaultTxVariant.Create: return "vault_create";
-        case VaultTxVariant.Deposit: return "vault_deposit";
-        case VaultTxVariant.Withdraw: return "vault_withdraw";
-        case VaultTxVariant.ClpConfig: return "vault_clp_config";
-        case VaultTxVariant.ClpManagedAccount: return "vault_clp_managed_account";
-        case VaultTxVariant.ClpTraderAllowlistUpdate: return "vault_clp_trader_allowlist_update";
-        case VaultTxVariant.SetParams: return "vault_set_params";
-        case VaultTxVariant.SetStatus: return "vault_set_status";
-        case VaultTxVariant.ClpBatchCreateManagedAccounts: return "vault_clp_batch_create_managed_accounts";
-        case VaultTxVariant.Distribute: return "vault_distribute";
-        default: return "vault_unknown";
-    }
 }
 
 type Built = { spec: TypeSpec; message: Record<string, unknown> };
@@ -406,19 +373,6 @@ function executeBuilt(
         return {
             spec: MULTISIG_TYPES.CreateSubAccount,
             message: { ...head, name: tx.name, nonce: str(tx.nonce), ...tail },
-        };
-    }
-
-    if (payload.variant === GatedPayloadVariant.Vault) {
-        const tx = payload.inner as VaultTx;
-        return {
-            spec: MULTISIG_TYPES.VaultOperation,
-            message: {
-                ...head,
-                operation: vaultOperationName(tx),
-                nonce: str(tx.nonce),
-                ...tail,
-            },
         };
     }
 

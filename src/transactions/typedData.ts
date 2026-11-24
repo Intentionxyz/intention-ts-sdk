@@ -649,7 +649,7 @@ function buildInner(rawTx: RawTransaction): Built | null {
         return null;
     }
 
-    // Orders, vault operations, admin config: agent- or admin-signed.
+    // Orders and admin config: agent- or admin-signed.
     return null;
 }
 

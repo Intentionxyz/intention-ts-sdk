@@ -30,7 +30,6 @@ import {
     TransactionPayloadVariants,
     StpMode,
 } from "../types/enums";
-import { VaultTx } from "./vaultPayloads";
 // Type-only: the multisig payloads import this module for the inner transactions
 // they gate, so a runtime import back would close a cycle. The envelope needs the
 // type for its union and reads the nonce off the variant tag, neither of which
@@ -42,6 +41,55 @@ import type { DexMultisigTx } from "./multisigPayloads";
 // ============================================================================
 
 export abstract class TransactionPayload extends Serializable { }
+
+// ============================================================================
+// SubaccountId
+// ============================================================================
+
+/**
+ * Subaccount identity (main address + number + derived sub-address + user_name).
+ *
+ * BCS layout (fixed size, 84 bytes):
+ *   address:     [u8; 32]
+ *   number:      u32
+ *   sub_address: [u8; 32]
+ *   user_name:   [u8; 16]
+ */
+export class SubaccountId extends Serializable {
+    public readonly address: Uint8Array; // 32 bytes
+    public readonly number: number; // u32
+    public readonly sub_address: Uint8Array; // 32 bytes
+    public readonly user_name: Uint8Array; // 16 bytes
+
+    constructor(
+        address: Uint8Array,
+        number: number,
+        sub_address: Uint8Array,
+        user_name?: Uint8Array,
+    ) {
+        super();
+        if (address.length !== 32) {
+            throw new Error("SubaccountId address must be exactly 32 bytes");
+        }
+        if (sub_address.length !== 32) {
+            throw new Error("SubaccountId sub_address must be exactly 32 bytes");
+        }
+        this.address = address;
+        this.number = number;
+        this.sub_address = sub_address;
+        this.user_name = user_name ?? new Uint8Array(16);
+        if (this.user_name.length !== 16) {
+            throw new Error("SubaccountId user_name must be exactly 16 bytes");
+        }
+    }
+
+    serialize(serializer: Serializer): void {
+        serializer.serializeFixedBytes(this.address);
+        serializer.serializeU32(this.number);
+        serializer.serializeFixedBytes(this.sub_address);
+        serializer.serializeFixedBytes(this.user_name);
+    }
+}
 
 // ============================================================================
 // DexPlaceOrder
@@ -1394,11 +1442,6 @@ export class DexUserConfigTx extends Serializable {
     }
 }
 
-/** @deprecated Alias for compatibility - use DexUserConfigTx */
-export const DexConfigTx = DexUserConfigTx;
-/** @deprecated Alias type */
-export type DexConfigTx = DexUserConfigTx;
-
 // ============================================================================
 // DexOrderlessTx (top-level wrapper)
 // ============================================================================
@@ -1445,13 +1488,19 @@ export interface ReferralParameters {
     minClaimAmount: bigint;
 }
 
+/** `DexSystemConfigTx::Fee`: the domain the referral configuration belongs to. */
+const DEX_SYSTEM_CONFIG_FEE_DOMAIN = 2;
+/** `FeeTx::SetReferralConfig`, inside the Fee domain. */
+const FEE_TX_SET_REFERRAL_CONFIG = 2;
+
 export class SetReferralConfig extends RawOrderlessInner {
     constructor(public readonly nonce: bigint, public readonly parameters: ReferralParameters) {
         const s = new Serializer();
         if (!Number.isInteger(parameters.inviteeFeeDiscountPpm) || parameters.inviteeFeeDiscountPpm < 0 || parameters.inviteeFeeDiscountPpm > 1_000_000 ||
             !Number.isInteger(parameters.commissionRatePpm) || parameters.commissionRatePpm < 0 || parameters.commissionRatePpm > 1_000_000 ||
             parameters.referralThresholdVolume <= 0n || parameters.minClaimAmount <= 0n) throw new Error("Invalid referral configuration");
-        s.serializeU32AsUleb128(36);
+        s.serializeU32AsUleb128(DEX_SYSTEM_CONFIG_FEE_DOMAIN);
+        s.serializeU32AsUleb128(FEE_TX_SET_REFERRAL_CONFIG);
         s.serializeU64(nonce);
         s.serializeU32(parameters.inviteeFeeDiscountPpm);
         s.serializeU32(parameters.commissionRatePpm);
@@ -1468,7 +1517,6 @@ export type DexOrderlessTxInner =
     | DexUserConfigTx
     | DexTransferTx
     | DexAgentTx
-    | VaultTx
     | DexMultisigTx
     | RawOrderlessInner;
 
@@ -1536,7 +1584,6 @@ export class DexOrderlessTx extends Serializable {
         if (this.inner instanceof DexTx) return this.inner.nonce;
         if (this.inner instanceof DexTransferTx) return this.inner.nonce;
         if (this.inner instanceof DexAgentTx) return this.inner.nonce;
-        if (this.inner instanceof VaultTx) return this.inner.nonce;
         if (this.inner instanceof DexUserConfigTx) {
             const p = this.inner.payload;
             if (p instanceof SetUserLeverage) return p.nonce;

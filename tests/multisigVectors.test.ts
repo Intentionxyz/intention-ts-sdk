@@ -56,9 +56,7 @@ import {
     DexOrderlessTxVariant,
     DexTransferVariant,
     MultisigOpVariant,
-    VaultTxVariant,
 } from "../src/types/enums";
-import { VaultDepositTx, VaultTx } from "../src/transactions/vaultPayloads";
 
 interface VectorCase {
     name: string;
@@ -183,7 +181,7 @@ function internalTransfer(nonce: bigint, items: [number, number, bigint][]): Mul
 }
 
 /**
- * The eighteen operations recorded by the reference vectors, in fixture order.
+ * The seventeen operations recorded by the reference vectors, in fixture order.
  * Explicit inputs ensure every supported variant exercises the renderer.
  */
 function everyOperation(): MultisigOp[] {
@@ -234,9 +232,6 @@ function everyOperation(): MultisigOp[] {
         ),
         new MultisigOpExecute(GatedPayload.agent(DexAgentTx.revokeAll(29n))),
         new MultisigOpExecute(GatedPayload.createSubAccount(new CreateSubAccount(27n, "treasury"))),
-        new MultisigOpExecute(
-            GatedPayload.vault(new VaultTx(VaultTxVariant.Deposit, new VaultDepositTx(3n, 28n, 10_000_000n))),
-        ),
     ];
 }
 
@@ -259,7 +254,7 @@ function assertTypesMatch(ours: Record<string, { name: string; type: string }[]>
 describe("multisig signing vectors", () => {
     it("the fixture is the version this SDK implements", () => {
         assert.equal(vectors.authorization_version, 1);
-        assert.equal(vectors.operations.length, 18);
+        assert.equal(vectors.operations.length, 17);
     });
 
     it("the domain separator is the one the chain hashes", () => {
@@ -388,7 +383,9 @@ describe("multisig signing vectors", () => {
      * the `Option<MultisigProof>` tag. A proof written in the wrong place does not
      * fail as a missing field - the node reads the next length byte as data and
      * answers `INVALID_SIGNATURE`, which names neither the field nor the side that
-     * differs.
+     * differs. When the business Vault variants were removed, only the two tags
+     * (Multisig 6 -> 5, DexAgent 2 -> 1) and the proof's operation id (from the
+     * regenerated vectors) were rewritten; the layout is unchanged.
      */
     it("the envelope carries nonce, account, operation and an optional proof, in that order", () => {
         const op = new MultisigOpExecute(GatedPayload.agent(DexAgentTx.revokeAll(29n)));
@@ -404,7 +401,7 @@ describe("multisig signing vectors", () => {
 
         assert.equal(
             hex(envelope.bcsToBytes()),
-            "0x060700000000000000000000000000000000000000111111111111111111111111111111111111111105021d000000000000000201ee20e2ba2928a3c191dff8f1244c7b335fe8064ba8a11ad628abac979e18333a030000000000000000d2496b0000000002313131313131313131313131313131313131313131313131313131313131313132323232323232323232323232323232323232323232323232323232323232321b414141414141414141414141414141414141414141414141414141414141414142424242424242424242424242424242424242424242424242424242424242421c",
+            "0x050700000000000000000000000000000000000000111111111111111111111111111111111111111105011d00000000000000020149c01d04950832e9c11036e41abc4a9fa94ab308075cfd908a9657310223b921030000000000000000d2496b0000000002313131313131313131313131313131313131313131313131313131313131313132323232323232323232323232323232323232323232323232323232323232321b414141414141414141414141414141414141414141414141414141414141414142424242424242424242424242424242424242424242424242424242424242421c",
         );
 
         assert.equal(envelope.nonce, 7n, "the envelope nonce is the submitting key's");
@@ -424,7 +421,7 @@ describe("multisig signing vectors", () => {
 
         assert.equal(
             hex(envelope.bcsToBytes()),
-            "0x0608000000000000000000000000000000000000001111111111111111111111111111111111111111040101010101010101010101010101010101010101010101010101010101010101010202020202020202020202020202020202020202020202020202020202020202400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "0x0508000000000000000000000000000000000000001111111111111111111111111111111111111111040101010101010101010101010101010101010101010101010101010101010101010202020202020202020202020202020202020202020202020202020202020202400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
         );
     });
 

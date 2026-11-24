@@ -153,15 +153,20 @@ export enum DexOrdersVariant {
     Noop = 5,
 }
 
+/**
+ * The chain's `DexOrderlessTx` variant tags. Renumbered once, with the chain reset that removed
+ * the business Vault variants; from here on, append only and never reorder.
+ */
 export enum DexOrderlessTxVariant {
     Dex = 0,
     DexUserConfig = 1,
     DexSystemConfig = 2,
     DexTransfer = 3,
     DexAgent = 4,
-    Vault = 5,
     /** Managing a multisig account, or acting as one. */
-    Multisig = 6,
+    Multisig = 5,
+    /** Validator operations. Listed so the numbering is complete; this SDK does not build them. */
+    Validator = 6,
 }
 
 export enum DexTransferVariant {
@@ -193,7 +198,8 @@ export enum AgentOperationVariant {
 // Matches the on-chain multisig protocol. The numbering is consensus
 // critical twice over: it is the BCS variant tag, and `MultisigOp::kind` /
 // `GatedPayload::kind` are bound into the operation id owners sign. Append
-// only; never renumber.
+// only; never renumber. (`GatedPayload` was renumbered once, with the chain
+// reset that removed its business Vault variant.)
 
 /** What a `Multisig` transaction asks for. */
 export enum MultisigOpVariant {
@@ -211,12 +217,16 @@ export enum MultisigOpVariant {
     Execute = 5,
 }
 
-/** A payload a policy account executes through its owners. */
+/**
+ * A payload a policy account executes through its owners. The tag is also the
+ * payload's kind: an `Execute` binds `16 + tag` into the operation id.
+ */
 export enum GatedPayloadVariant {
     DexTransfer = 0,
-    Vault = 1,
-    DexAgent = 2,
-    CreateSubAccount = 3,
+    DexAgent = 1,
+    CreateSubAccount = 2,
+    /** Validator key rotation. Listed so the numbering is complete; this SDK does not build it. */
+    Validator = 3,
 }
 
 /** How an incoming control key proves it can sign. */
@@ -243,11 +253,6 @@ export enum DexUserConfigTxVariant {
     RegisterReferralCode = 6,
     BindReferrer = 7,
 }
-
-/** @deprecated Alias for compatibility - use DexUserConfigTxVariant */
-export const DexConfigTxVariant = DexUserConfigTxVariant;
-/** @deprecated Alias type */
-export type DexConfigTxVariant = DexUserConfigTxVariant;
 
 /**
  * Perpetual/Spot symbol status, as the chain numbers it. A value this SDK does not know may
@@ -323,38 +328,6 @@ export enum TransactionPayloadVariants {
     Multisig = 3,
     Payload = 4,
     DexOrderless = 5,
-}
-
-// --- Vault Enums ---
-
-export enum VaultTxVariant {
-    Create = 0,
-    Deposit = 1,
-    Withdraw = 2,
-    ClpConfig = 3,
-    ClpManagedAccount = 4,
-    ClpTraderAllowlistUpdate = 5,
-    SetParams = 6,
-    SetStatus = 7,
-    ClpBatchCreateManagedAccounts = 8,
-    Distribute = 9,
-}
-
-export enum ManagedAccountAction {
-    Upsert = 0,
-    Disable = 1,
-    Remove = 2,
-}
-
-export enum VaultStatus {
-    Active = 0,
-    Paused = 1,
-    Closed = 2,
-}
-
-export enum ClpTraderAllowlistAction {
-    Add = 0,
-    Remove = 1,
 }
 
 /**

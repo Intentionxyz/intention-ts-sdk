@@ -55,13 +55,7 @@ export {
     KeyProofVariant,
     AuthorityKindVariant,
     DexUserConfigTxVariant,
-    DexConfigTxVariant,
     TransactionPayloadVariants,
-    // Vault enums
-    VaultTxVariant,
-    ManagedAccountAction,
-    VaultStatus,
-    ClpTraderAllowlistAction,
     // Position & signing enums
     PositionMode,
     SigningSchemeInput,
@@ -79,6 +73,7 @@ export {
 // --- DEX Transaction Payloads ---
 export {
     TransactionPayload,
+    SubaccountId as DexEventSubaccountId,
     DexPlaceOrder,
     DexPlaceOrders,
     DexCancelOrder,
@@ -116,7 +111,6 @@ export {
     ClaimReferralRewards,
     SetReferralConfig,
     DexUserConfigTx,
-    DexConfigTx,
     // NOTE: DEX system-config transaction builders (CreateSpot/CreatePerpetual/
     // Update*/Set*/DexSystemConfigTx and their sub-structs) were removed - these
     // admin/config transactions are not exposed by the SDK; only their on-chain
@@ -267,48 +261,6 @@ export type {
     AgentBinding,
 } from "./transactions/accountClient";
 
-// --- Vault Transaction Payloads ---
-export {
-    // Types
-    SubaccountId as DexEventSubaccountId,
-    SymbolAccountsEntry,
-    ClpTraderAllowlistEntry,
-    // Transaction types
-    VaultTx,
-    VaultCreateTx,
-    VaultDepositTx,
-    VaultWithdrawTx,
-    VaultClpConfigTx,
-    VaultClpManagedAccountTx,
-    VaultClpTraderAllowlistUpdateTx,
-    VaultSetParamsTx,
-    VaultSetStatusTx,
-    VaultClpBatchCreateManagedAccountsTx,
-    VaultDistributeTx,
-    // Builder helpers
-    buildVaultCreate,
-    buildVaultDeposit,
-    buildVaultWithdraw,
-    buildVaultSetParams,
-    buildVaultSetStatus,
-    buildVaultClose,
-    buildVaultDistribute,
-    calculateMaxDistributeForLeader,
-    // Constants
-    VAULT_MIN_INITIAL_DEPOSIT_USDC,
-    VAULT_CREATION_FEE_USDC,
-    MIN_LEADER_STAKE_USDC,
-    VAULT_MIN_LOCKUP_SECONDS,
-    VAULT_NAME_MAX_LEN,
-    VAULT_STRATEGY_DESC_MAX_LEN,
-    NAV_PRECISION,
-    BPS_DENOMINATOR,
-    // Error types
-    VaultValidationError,
-    VaultErrorCode,
-} from "./transactions/vaultPayloads";
-export type { VaultTxPayload } from "./transactions/vaultPayloads";
-
 // --- Transaction construction ---
 export { ChainId } from "./transactions/chainId";
 export { RawTransaction, SimpleTransaction } from "./transactions/rawTransaction";
@@ -425,27 +377,6 @@ export type {
     TraderAdjustIsolatedMarginInput,
 } from "./api/intentionClient";
 
-// --- Vault API client ---
-export {
-    VaultClient,
-} from "./api/vaultClient";
-export type {
-    VaultState,
-    VaultSummary,
-    VaultDetail,
-    DepositorPosition,
-    VaultDepositor,
-    SubaccountIdResponse,
-    VaultPosition,
-    VaultAccountPositions,
-    VaultAssetPosition,
-    VaultPerpetualPosition,
-    VaultOrder,
-    VaultAccountOrders,
-    VaultClpConfig,
-    ClpAllowlistEntry,
-} from "./api/vaultClient";
-
 // =============================================================================
 // Explorer-compatible exports (ported from @intention-ts-sdk)
 // =============================================================================
@@ -537,17 +468,6 @@ export {
     decodeChangePositionModeEvent,
     decodeChangeMarginModeEvent,
     decodeAdjustIsolatedMarginEvent,
-    decodeVaultCreatedEvent,
-    decodeVaultUpdatedEvent,
-    decodeVaultDepositedEvent,
-    decodeVaultWithdrawRequestedEvent,
-    decodeVaultWithdrawCompletedEvent,
-    decodeVaultWithdrawRejectedEvent,
-    decodeVaultWithdrawFailedEvent,
-    decodeVaultSharesBurnedEvent,
-    decodeVaultLeaderFeePaidEvent,
-    decodeVaultDistributeEvent,
-    decodeVaultDistributeDepositorEvent,
     // Trading events
     decodeOrderPlacedEvent,
     decodeOrderFilledEvent,
@@ -584,16 +504,6 @@ export type {
     ChangePositionModeEvent,
     ChangeMarginModeEvent,
     AdjustIsolatedMarginEvent,
-    VaultCreatedEvent,
-    VaultUpdatedEvent,
-    VaultDepositedEvent,
-    VaultWithdrawRequestedEvent,
-    VaultWithdrawCompletedEvent,
-    VaultWithdrawErrorEvent,
-    VaultSharesBurnedEvent,
-    VaultLeaderFeePaidEvent,
-    VaultDistributeEvent,
-    VaultDistributeDepositorEvent,
     SubaccountId,
     OrderPlacedEvent,
     OrderFilledEvent,

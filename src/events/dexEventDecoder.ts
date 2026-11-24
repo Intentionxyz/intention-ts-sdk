@@ -49,17 +49,6 @@ import {
     decodeChangePositionModeEvent,
     decodeChangeMarginModeEvent,
     decodeAdjustIsolatedMarginEvent,
-    decodeVaultCreatedEvent,
-    decodeVaultUpdatedEvent,
-    decodeVaultDepositedEvent,
-    decodeVaultWithdrawRequestedEvent,
-    decodeVaultWithdrawCompletedEvent,
-    decodeVaultWithdrawRejectedEvent,
-    decodeVaultWithdrawFailedEvent,
-    decodeVaultSharesBurnedEvent,
-    decodeVaultLeaderFeePaidEvent,
-    decodeVaultDistributeEvent,
-    decodeVaultDistributeDepositorEvent,
     decodeCreateSpotEvent,
     decodeCreatePerpetualEvent,
     decodeUpdateLeverageEvent,
@@ -84,16 +73,6 @@ import {
     type ChangePositionModeEvent,
     type ChangeMarginModeEvent,
     type AdjustIsolatedMarginEvent,
-    type VaultCreatedEvent,
-    type VaultUpdatedEvent,
-    type VaultDepositedEvent,
-    type VaultWithdrawRequestedEvent,
-    type VaultWithdrawCompletedEvent,
-    type VaultWithdrawErrorEvent,
-    type VaultSharesBurnedEvent,
-    type VaultLeaderFeePaidEvent,
-    type VaultDistributeEvent,
-    type VaultDistributeDepositorEvent,
     type SuccessEvent,
 } from "./events";
 
@@ -245,17 +224,6 @@ const EVENT_TAGS = {
     CHANGE_POSITION_MODE: "::dex::ChangePositionModeEvent",
     CHANGE_MARGIN_MODE: "::dex::ChangeMarginModeEvent",
     ADJUST_ISOLATED_MARGIN: "::dex::AdjustIsolatedMarginEvent",
-    VAULT_CREATED: "::vault_events::VaultCreatedEvent",
-    VAULT_UPDATED: "::vault_events::VaultUpdatedEvent",
-    VAULT_DEPOSITED: "::vault_events::DepositedEvent",
-    VAULT_WITHDRAW_REQUESTED: "::vault_events::WithdrawRequestedEvent",
-    VAULT_WITHDRAW_COMPLETED: "::vault_events::WithdrawCompletedEvent",
-    VAULT_WITHDRAW_REJECTED: "::vault_events::WithdrawRejectedEvent",
-    VAULT_WITHDRAW_FAILED: "::vault_events::WithdrawFailedEvent",
-    VAULT_SHARES_BURNED: "::vault_events::SharesBurnedEvent",
-    VAULT_LEADER_FEE_PAID: "::vault_events::LeaderFeePaidEvent",
-    VAULT_DISTRIBUTE: "::vault_events::DistributeEvent",
-    VAULT_DISTRIBUTE_DEPOSITOR: "::vault_events::DistributeDepositorEvent",
     // sys_config events
     CREATE_SPOT: "::dex::CreateSpotEvent",
     CREATE_PERPETUAL: "::dex::CreatePerpetualEvent",
@@ -2411,17 +2379,6 @@ export type DexEventType =
     | "ChangePositionModeEvent"
     | "ChangeMarginModeEvent"
     | "AdjustIsolatedMarginEvent"
-    | "VaultCreatedEvent"
-    | "VaultUpdatedEvent"
-    | "VaultDepositedEvent"
-    | "VaultWithdrawRequestedEvent"
-    | "VaultWithdrawCompletedEvent"
-    | "VaultWithdrawRejectedEvent"
-    | "VaultWithdrawFailedEvent"
-    | "VaultSharesBurnedEvent"
-    | "VaultLeaderFeePaidEvent"
-    | "VaultDistributeEvent"
-    | "VaultDistributeDepositorEvent"
     | "CreateSpotEvent"
     | "CreatePerpetualEvent"
     | "UpdateLeverageEvent"
@@ -2495,16 +2452,6 @@ export interface DecodedDexEvent {
         | ChangePositionModeEvent
         | ChangeMarginModeEvent
         | AdjustIsolatedMarginEvent
-        | VaultCreatedEvent
-        | VaultUpdatedEvent
-        | VaultDepositedEvent
-        | VaultWithdrawRequestedEvent
-        | VaultWithdrawCompletedEvent
-        | VaultWithdrawErrorEvent
-        | VaultSharesBurnedEvent
-        | VaultLeaderFeePaidEvent
-        | VaultDistributeEvent
-        | VaultDistributeDepositorEvent
         | SuccessEvent
         | DexFeeStatementEvent
         | BatchSystemConfigEvent
@@ -3050,63 +2997,6 @@ export function decodeDexEvent(
             return {
                 eventType: "AdjustIsolatedMarginEvent",
                 event: decodeAdjustIsolatedMarginEvent(bytes),
-            };
-        }
-        if (typeStr.endsWith(EVENT_TAGS.VAULT_CREATED)) {
-            return { eventType: "VaultCreatedEvent", event: decodeVaultCreatedEvent(bytes) };
-        }
-        if (typeStr.endsWith(EVENT_TAGS.VAULT_UPDATED)) {
-            return { eventType: "VaultUpdatedEvent", event: decodeVaultUpdatedEvent(bytes) };
-        }
-        if (typeStr.endsWith(EVENT_TAGS.VAULT_DEPOSITED)) {
-            return { eventType: "VaultDepositedEvent", event: decodeVaultDepositedEvent(bytes) };
-        }
-        if (typeStr.endsWith(EVENT_TAGS.VAULT_WITHDRAW_REQUESTED)) {
-            return {
-                eventType: "VaultWithdrawRequestedEvent",
-                event: decodeVaultWithdrawRequestedEvent(bytes),
-            };
-        }
-        if (typeStr.endsWith(EVENT_TAGS.VAULT_WITHDRAW_COMPLETED)) {
-            return {
-                eventType: "VaultWithdrawCompletedEvent",
-                event: decodeVaultWithdrawCompletedEvent(bytes),
-            };
-        }
-        if (typeStr.endsWith(EVENT_TAGS.VAULT_WITHDRAW_REJECTED)) {
-            return {
-                eventType: "VaultWithdrawRejectedEvent",
-                event: decodeVaultWithdrawRejectedEvent(bytes),
-            };
-        }
-        if (typeStr.endsWith(EVENT_TAGS.VAULT_WITHDRAW_FAILED)) {
-            return {
-                eventType: "VaultWithdrawFailedEvent",
-                event: decodeVaultWithdrawFailedEvent(bytes),
-            };
-        }
-        if (typeStr.endsWith(EVENT_TAGS.VAULT_SHARES_BURNED)) {
-            return {
-                eventType: "VaultSharesBurnedEvent",
-                event: decodeVaultSharesBurnedEvent(bytes),
-            };
-        }
-        if (typeStr.endsWith(EVENT_TAGS.VAULT_LEADER_FEE_PAID)) {
-            return {
-                eventType: "VaultLeaderFeePaidEvent",
-                event: decodeVaultLeaderFeePaidEvent(bytes),
-            };
-        }
-        if (typeStr.endsWith(EVENT_TAGS.VAULT_DISTRIBUTE)) {
-            return {
-                eventType: "VaultDistributeEvent",
-                event: decodeVaultDistributeEvent(bytes),
-            };
-        }
-        if (typeStr.endsWith(EVENT_TAGS.VAULT_DISTRIBUTE_DEPOSITOR)) {
-            return {
-                eventType: "VaultDistributeDepositorEvent",
-                event: decodeVaultDistributeDepositorEvent(bytes),
             };
         }
         if (typeStr.endsWith(EVENT_TAGS.CREATE_SPOT)) {

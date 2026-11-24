@@ -1,7 +1,7 @@
 {
     "name": "intention-ts-sdk",
     "description": "TypeScript SDK for Intention DEX",
-    "version": "4.0.0-rc.3",
+    "version": "4.0.0-rc.4",
     "license": "Apache-2.0",
     "repository": {
         "type": "git",

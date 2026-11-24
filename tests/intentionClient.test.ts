@@ -13,7 +13,6 @@ import {
     OrderPositionMode,
     OrderType,
     SimpleMarketResolver,
-    VaultClient,
 } from "../src/index";
 import type {
     PendingTransactionResponse,
@@ -78,7 +77,6 @@ test("IntentionClient exposes domain namespaces without constructor I/O", () => 
 
     const trader = sdk.trader({ subAddress: SUB_ADDRESS });
     assert.ok(sdk.accounts instanceof AccountClient);
-    assert.ok(sdk.vaults instanceof VaultClient);
     assert.ok(sdk.realtime instanceof IntentionWebSocketClient);
     assert.equal(trader.subAddress.toString(), SUB_ADDRESS.toString());
     assert.equal(websocketCreations, 0);

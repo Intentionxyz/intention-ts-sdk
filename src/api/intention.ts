@@ -95,7 +95,7 @@ export interface DexOrderlessExecutionOptions extends DexOrderlessSubmitOptions 
     pollIntervalMs?: number;
 }
 
-/** Confirmed result shared by non-order DEX account, agent, transfer and vault actions. */
+/** Confirmed result shared by non-order DEX account, agent and transfer actions. */
 export interface DexOrderlessExecutionResult {
     hash: string;
     transaction: TransactionResponse;
@@ -288,8 +288,8 @@ export class Intention {
     /**
      * Sign and submit any already-built DEX orderless transaction.
      *
-     * This is the common low-latency path used by account, agent, transfer,
-     * vault and order clients. It returns after node acceptance, before
+     * This is the common low-latency path used by account, agent, transfer
+     * and order clients. It returns after node acceptance, before
      * commitment.
      */
     async submitDexOrderless(args: {

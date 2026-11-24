@@ -6,9 +6,8 @@ TypeScript SDK currently recommends, what it simplifies compared with the earlie
 approach, and how to keep using the fine-grained clients, the pure builders and
 the low-level transaction objects.
 
-It covers user-level capabilities only. Under the unified entry point, vaults are
-read-only and there are no vault transaction shortcuts; admin and system
-configuration are out of scope.
+It covers user-level capabilities only; admin and system configuration are out
+of scope.
 
 ## 1. Which integration path to choose
 
@@ -152,7 +151,6 @@ The unified object's main namespaces:
 | `sdk.accounts` | subaccounts, agents, transfers and cross-subaccount settings |
 | `sdk.markets` | fetching market configuration and caching the resolver |
 | `sdk.realtime` | the lazily created WebSocket client |
-| `sdk.vaults` | read-only vault queries |
 | `sdk.intention` | the underlying chain client, still available |
 
 ## 5. How `trader()` loads lazily
@@ -792,6 +790,7 @@ wire units. The cost is that the caller must guarantee:
 | manual `submit + wait` | an executing method, without the `submit` prefix |
 | submit only | the matching `submit*` method |
 | instantiating the WebSocket client by hand | `sdk.realtime` |
+| the removed deprecated aliases `DexConfigTx` / `DexConfigTxVariant` | `DexUserConfigTx` / `DexUserConfigTxVariant` (same values) |
 
 Migration does not have to happen all at once. Unify the configuration and the
 signer first while keeping your existing `OrderClient`, then switch to `trader`
@@ -814,8 +813,8 @@ once the behaviour matches.
     opens a socket.
 11. Keep private keys in a secure server-side signer or a wallet, never in logs,
     error reports or a frontend bundle.
-12. Vault transactions and admin/system configuration do not go through this
-    unified user entry point.
+12. Admin/system configuration does not go through this unified user entry
+    point.
 
 ## 15. Frequently asked questions
 

@@ -1366,7 +1366,7 @@ export interface OrderClientContext extends OrderIntentsContext {
     signer: Account;
     /** Defaults to `CreatedBy.User`. */
     createdBy?: CreatedBy;
-    /** Vault / on-behalf-of sender (optional). */
+    /** On-behalf-of sender (optional). */
     onBehalfOf?: AccountAddress;
     /** Orderless tx gas / expiration overrides. */
     submitOptions?: {

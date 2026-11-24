@@ -903,12 +903,12 @@
     },
     {
       "name": "13-execute_agent",
-      "op_kind": 18,
-      "op_bcs": "0x05021900000000000000000c6d61726b65742d6d616b65720000000000000000000000007a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a00b33f7100000000",
-      "op_id": "0xd1f0521eeb2389a00629c86d8dc879c0925af76315ee96368b0a15f019a0e350",
+      "op_kind": 17,
+      "op_bcs": "0x05011900000000000000000c6d61726b65742d6d616b65720000000000000000000000007a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a00b33f7100000000",
+      "op_id": "0x7cd0f50465b32fd1c36705a83c40ff2fdbf34d10f456c93875df782da33a6494",
       "submit_operation": "execute_agent",
       "submit_struct_hash": "0x5155129b40fcd1b4d70a65793a9dba5a6cc9c377d780a1e470d724f876c658b2",
-      "approval_digest": "0x68fc0f3f0bfbaa2ec4d811177bb56e59b56237cd7f13e6f1cf6fc5030a1ab9c4",
+      "approval_digest": "0xb5f14a9e60098416a3bf6797b1a9eaf91ea1cffe04f49f3a1bd67c1d408598cd",
       "typed_data": {
         "types": {
           "EIP712Domain": [
@@ -984,18 +984,18 @@
           "expiryTimestamp": "1900000000",
           "nonce": "25",
           "expiresAt": "1800000000",
-          "digest": "0xd1f0521eeb2389a00629c86d8dc879c0925af76315ee96368b0a15f019a0e350"
+          "digest": "0x7cd0f50465b32fd1c36705a83c40ff2fdbf34d10f456c93875df782da33a6494"
         }
       }
     },
     {
       "name": "14-execute_agent",
-      "op_kind": 18,
-      "op_bcs": "0x05021a00000000000000010c6d61726b65742d6d616b6572",
-      "op_id": "0x683a3cf5ff2c84702a0183e7ffe6d694ef1d515916646b61dbbb655dac3584c2",
+      "op_kind": 17,
+      "op_bcs": "0x05011a00000000000000010c6d61726b65742d6d616b6572",
+      "op_id": "0x5303d8d1e3077f465a145296e55f05b4638e3367b6bd628ecaae76649a5f602a",
       "submit_operation": "execute_agent",
       "submit_struct_hash": "0x5155129b40fcd1b4d70a65793a9dba5a6cc9c377d780a1e470d724f876c658b2",
-      "approval_digest": "0x20c0da8ac2201a77985a5c239a6f0052f7f6bfcea6cb89bb1271d7834863d0a6",
+      "approval_digest": "0xbbd2a85c0aab614b34ff52ab0b1b38f5578be6f95ad0c09c0aa8e1bd7232804d",
       "typed_data": {
         "types": {
           "EIP712Domain": [
@@ -1061,18 +1061,18 @@
           "name": "market-maker",
           "nonce": "26",
           "expiresAt": "1800000000",
-          "digest": "0x683a3cf5ff2c84702a0183e7ffe6d694ef1d515916646b61dbbb655dac3584c2"
+          "digest": "0x5303d8d1e3077f465a145296e55f05b4638e3367b6bd628ecaae76649a5f602a"
         }
       }
     },
     {
       "name": "15-execute_agent",
-      "op_kind": 18,
-      "op_bcs": "0x05021d0000000000000002",
-      "op_id": "0xee20e2ba2928a3c191dff8f1244c7b335fe8064ba8a11ad628abac979e18333a",
+      "op_kind": 17,
+      "op_bcs": "0x05011d0000000000000002",
+      "op_id": "0x49c01d04950832e9c11036e41abc4a9fa94ab308075cfd908a9657310223b921",
       "submit_operation": "execute_agent",
       "submit_struct_hash": "0x5155129b40fcd1b4d70a65793a9dba5a6cc9c377d780a1e470d724f876c658b2",
-      "approval_digest": "0x406894fc48ab12c87bd371bd9e82c4edfec223f47a890e737f0649c9748b600e",
+      "approval_digest": "0x79c33a4f6e9338df8518448e769f3f147e471541ebfd449acd9e94ad79ea1828",
       "typed_data": {
         "types": {
           "EIP712Domain": [
@@ -1133,18 +1133,18 @@
           "authorityEpoch": "3",
           "nonce": "29",
           "expiresAt": "1800000000",
-          "digest": "0xee20e2ba2928a3c191dff8f1244c7b335fe8064ba8a11ad628abac979e18333a"
+          "digest": "0x49c01d04950832e9c11036e41abc4a9fa94ab308075cfd908a9657310223b921"
         }
       }
     },
     {
       "name": "16-execute_create_subaccount",
-      "op_kind": 19,
-      "op_bcs": "0x05031b00000000000000087472656173757279",
-      "op_id": "0x90c061199947e21a48a45912bbdf7fbb9a0efc2a801fc4628125647182f38cd5",
+      "op_kind": 18,
+      "op_bcs": "0x05021b00000000000000087472656173757279",
+      "op_id": "0xe5f76ee5879afb9fe6e793ff7e1dec74e67687505cb8a83bc83185ea7d3ac8a1",
       "submit_operation": "execute_create_subaccount",
       "submit_struct_hash": "0x0d43381e6a50cb335ba8ff7a8d38c3c5eafdac9f58f94a74c7bc017b067beb41",
-      "approval_digest": "0xfb79b50c8a1a5603b9ff491278c1b5cb03328bee6244adfdc2e20c1026cc7cca",
+      "approval_digest": "0x873707dcb6d5fcbeb1a3844c93aca7ea3322e9b81a87081f6df8b91252356826",
       "typed_data": {
         "types": {
           "EIP712Domain": [
@@ -1210,84 +1210,7 @@
           "name": "treasury",
           "nonce": "27",
           "expiresAt": "1800000000",
-          "digest": "0x90c061199947e21a48a45912bbdf7fbb9a0efc2a801fc4628125647182f38cd5"
-        }
-      }
-    },
-    {
-      "name": "17-execute_vault",
-      "op_kind": 17,
-      "op_bcs": "0x05010103000000000000001c0000000000000080969800000000000000000000000000",
-      "op_id": "0xc80598f18853ddade641ca4ac0c9fd64f2fafa444c398cc4b77d471167fec55a",
-      "submit_operation": "execute_vault",
-      "submit_struct_hash": "0x2c669cc636a453b138087d364f27723a1b4e97df1f3ab8a1fe9e856e385701fc",
-      "approval_digest": "0x672d302f32a8b56be34d334de2fe88f79d3226ad3ebf12d230883d849f65534a",
-      "typed_data": {
-        "types": {
-          "EIP712Domain": [
-            {
-              "name": "name",
-              "type": "string"
-            },
-            {
-              "name": "version",
-              "type": "string"
-            },
-            {
-              "name": "chainId",
-              "type": "uint256"
-            },
-            {
-              "name": "verifyingContract",
-              "type": "address"
-            }
-          ],
-          "IntentionMultisig_VaultOperation": [
-            {
-              "name": "intentionChain",
-              "type": "string"
-            },
-            {
-              "name": "account",
-              "type": "address"
-            },
-            {
-              "name": "authorityEpoch",
-              "type": "uint64"
-            },
-            {
-              "name": "operation",
-              "type": "string"
-            },
-            {
-              "name": "nonce",
-              "type": "uint64"
-            },
-            {
-              "name": "expiresAt",
-              "type": "uint64"
-            },
-            {
-              "name": "digest",
-              "type": "bytes32"
-            }
-          ]
-        },
-        "primaryType": "IntentionMultisig_VaultOperation",
-        "domain": {
-          "name": "Intention",
-          "version": "1",
-          "chainId": 421614,
-          "verifyingContract": "0x0000000000000000000000000000000000000000"
-        },
-        "message": {
-          "intentionChain": "Testnet",
-          "account": "0x1111111111111111111111111111111111111111",
-          "authorityEpoch": "3",
-          "operation": "vault_deposit",
-          "nonce": "28",
-          "expiresAt": "1800000000",
-          "digest": "0xc80598f18853ddade641ca4ac0c9fd64f2fafa444c398cc4b77d471167fec55a"
+          "digest": "0xe5f76ee5879afb9fe6e793ff7e1dec74e67687505cb8a83bc83185ea7d3ac8a1"
         }
       }
     }

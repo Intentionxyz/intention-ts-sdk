@@ -37,32 +37,14 @@ import {
     UserSymbolLeverage,
 } from "./dexPayloads";
 import {
-    SubaccountId,
-    SymbolAccountsEntry,
-    ClpTraderAllowlistEntry,
-    VaultTx,
-    VaultCreateTx,
-    VaultDepositTx,
-    VaultWithdrawTx,
-    VaultDistributeTx,
-    VaultClpConfigTx,
-    VaultClpManagedAccountTx,
-    VaultClpTraderAllowlistUpdateTx,
-    VaultClpBatchCreateManagedAccountsTx,
-    VaultSetParamsTx,
-    VaultSetStatusTx,
-} from "./vaultPayloads";
-import {
     AccountType,
     AgentOperationVariant,
-    ClpTraderAllowlistAction,
     ConditionType,
     CrossTransferOption,
     DexOrderlessTxVariant,
     DexOrdersVariant,
     DexTransferVariant,
     DexUserConfigTxVariant,
-    ManagedAccountAction,
     MarginMode,
     OrderBasicType,
     OrderPositionMode,
@@ -72,8 +54,6 @@ import {
     TimeInForce,
     TriggerPriceType,
     GatedPayloadVariant,
-    VaultStatus,
-    VaultTxVariant,
 } from "../types/enums";
 import {
     DexMultisigTx,
@@ -109,8 +89,7 @@ export type DexOrderlessPayloadJson =
     | DexNoopPayloadJson
     | DexAgentPayloadJson
     | DexTransferPayloadJson
-    | DexUserConfigPayloadJson
-    | VaultPayloadJson;
+    | DexUserConfigPayloadJson;
 
 /**
  * A noop: the nonce it consumes and nothing else.
@@ -360,141 +339,6 @@ export interface DexUserConfigAdjustIsolatedMarginPayloadJson {
     on_behalf_of?: string;
 }
 
-export type VaultManagedAccountActionJson = "upsert" | "disable" | "remove";
-export type VaultAllowlistActionJson = "add" | "remove";
-export type VaultStatusJson = "active" | "paused" | "closed";
-
-export interface VaultSubaccountIdJson {
-    address: string;
-    number: number;
-    sub_address: string;
-}
-
-export interface VaultSymbolAccountsEntryJson {
-    symbol_id: number;
-    accounts: VaultSubaccountIdJson[];
-}
-
-export interface VaultClpTraderAllowlistEntryJson {
-    clp_account: VaultSubaccountIdJson;
-    traders: string[];
-}
-
-export type VaultPayloadJson =
-    | VaultCreatePayloadJson
-    | VaultDepositPayloadJson
-    | VaultWithdrawPayloadJson
-    | VaultDistributePayloadJson
-    | VaultClpConfigPayloadJson
-    | VaultClpManagedAccountPayloadJson
-    | VaultClpTraderAllowlistUpdatePayloadJson
-    | VaultClpBatchCreateManagedAccountsPayloadJson
-    | VaultSetParamsPayloadJson
-    | VaultSetStatusPayloadJson;
-
-export interface VaultCreatePayloadJson {
-    type: "dex_orderless_payload";
-    dex_type: "vault_payload";
-    vault_type: "create";
-    nonce: string;
-    lockup_seconds: number;
-    always_proportional_close: boolean;
-    initial_deposit_usdc: string;
-    vault_name: string;
-    strategy_description: string;
-}
-
-export interface VaultDepositPayloadJson {
-    type: "dex_orderless_payload";
-    dex_type: "vault_payload";
-    vault_type: "deposit";
-    vault_id: string;
-    nonce: string;
-    amount_usdc: string;
-}
-
-export interface VaultWithdrawPayloadJson {
-    type: "dex_orderless_payload";
-    dex_type: "vault_payload";
-    vault_type: "withdraw";
-    vault_id: string;
-    nonce: string;
-    withdraw_shares: string;
-}
-
-export interface VaultDistributePayloadJson {
-    type: "dex_orderless_payload";
-    dex_type: "vault_payload";
-    vault_type: "distribute";
-    vault_id: string;
-    nonce: string;
-    distribute_amount_usdc: string;
-}
-
-export interface VaultClpConfigPayloadJson {
-    type: "dex_orderless_payload";
-    dex_type: "vault_payload";
-    vault_type: "clp_config";
-    nonce: string;
-    bootstrap: boolean;
-    primary_account?: VaultSubaccountIdJson;
-    symbol_accounts?: VaultSymbolAccountsEntryJson[];
-    allowlist?: VaultClpTraderAllowlistEntryJson[];
-}
-
-export interface VaultClpManagedAccountPayloadJson {
-    type: "dex_orderless_payload";
-    dex_type: "vault_payload";
-    vault_type: "clp_managed_account";
-    nonce: string;
-    account: VaultSubaccountIdJson;
-    action: VaultManagedAccountActionJson;
-    memo?: string;
-}
-
-export interface VaultClpTraderAllowlistUpdatePayloadJson {
-    type: "dex_orderless_payload";
-    dex_type: "vault_payload";
-    vault_type: "clp_trader_allowlist_update";
-    nonce: string;
-    clp_account: VaultSubaccountIdJson;
-    action: VaultAllowlistActionJson;
-    traders: string[];
-}
-
-export interface VaultClpBatchCreateManagedAccountsPayloadJson {
-    type: "dex_orderless_payload";
-    dex_type: "vault_payload";
-    vault_type: "clp_batch_create_managed_accounts";
-    nonce: string;
-    address: string;
-    start_number: number;
-    count: number;
-    user_name_prefix: string;
-    memo: string;
-}
-
-export interface VaultSetParamsPayloadJson {
-    type: "dex_orderless_payload";
-    dex_type: "vault_payload";
-    vault_type: "set_params";
-    nonce: string;
-    vault_id: string;
-    daily_withdraw_limit_bps?: number;
-    min_free_balance_ratio_bps?: number;
-    lockup_seconds?: number;
-    always_proportional_close?: boolean;
-}
-
-export interface VaultSetStatusPayloadJson {
-    type: "dex_orderless_payload";
-    dex_type: "vault_payload";
-    vault_type: "set_status";
-    nonce: string;
-    vault_id: string;
-    target_status: VaultStatusJson;
-}
-
 export type AccountTypeJson = "perp" | "spot";
 export type CrossTransferOptionJson = "mint" | "burn";
 
@@ -709,10 +553,6 @@ function renderGatedPayload(payload: GatedPayload): Record<string, unknown> {
             return renderDexTransferPayload(
                 payload.inner as DexTransferTx,
             ) as unknown as Record<string, unknown>;
-        case GatedPayloadVariant.Vault:
-            return renderVaultPayload(
-                payload.inner as VaultTx,
-            ) as unknown as Record<string, unknown>;
         case GatedPayloadVariant.DexAgent:
             return renderDexAgentPayload(
                 payload.inner as DexAgentTx,
@@ -802,13 +642,6 @@ function renderDexOrderlessPayload(
         dexOrderlessTx.inner instanceof DexUserConfigTx
     ) {
         return renderDexUserConfigPayload(dexOrderlessTx.inner);
-    }
-
-    if (
-        dexOrderlessTx.variant === DexOrderlessTxVariant.Vault &&
-        dexOrderlessTx.inner instanceof VaultTx
-    ) {
-        return renderVaultPayload(dexOrderlessTx.inner);
     }
 
     if (dexOrderlessTx.variant === DexOrderlessTxVariant.Multisig) {
@@ -1237,222 +1070,6 @@ function describeDexUserConfigPayload(userConfigTx: DexUserConfigTx): string {
     }
 }
 
-function renderVaultPayload(vaultTx: VaultTx): VaultPayloadJson {
-    switch (vaultTx.variant) {
-        case VaultTxVariant.Create: {
-            const v = vaultTx.inner as VaultCreateTx;
-            return {
-                type: "dex_orderless_payload",
-                dex_type: "vault_payload",
-                vault_type: "create",
-                nonce: v.nonce.toString(),
-                lockup_seconds: v.lockup_seconds,
-                always_proportional_close: v.always_proportional_close,
-                initial_deposit_usdc: v.initial_deposit_usdc.toString(),
-                vault_name: v.vault_name,
-                strategy_description: v.strategy_description,
-            };
-        }
-        case VaultTxVariant.Deposit: {
-            const v = vaultTx.inner as VaultDepositTx;
-            return {
-                type: "dex_orderless_payload",
-                dex_type: "vault_payload",
-                vault_type: "deposit",
-                vault_id: v.vault_id.toString(),
-                nonce: v.nonce.toString(),
-                amount_usdc: v.amount_usdc.toString(),
-            };
-        }
-        case VaultTxVariant.Withdraw: {
-            const v = vaultTx.inner as VaultWithdrawTx;
-            return {
-                type: "dex_orderless_payload",
-                dex_type: "vault_payload",
-                vault_type: "withdraw",
-                vault_id: v.vault_id.toString(),
-                nonce: v.nonce.toString(),
-                withdraw_shares: v.withdraw_shares.toString(),
-            };
-        }
-        case VaultTxVariant.Distribute: {
-            const v = vaultTx.inner as VaultDistributeTx;
-            return {
-                type: "dex_orderless_payload",
-                dex_type: "vault_payload",
-                vault_type: "distribute",
-                vault_id: v.vault_id.toString(),
-                nonce: v.nonce.toString(),
-                distribute_amount_usdc: v.distribute_amount_usdc.toString(),
-            };
-        }
-        case VaultTxVariant.ClpConfig: {
-            const v = vaultTx.inner as VaultClpConfigTx;
-            const payload: VaultClpConfigPayloadJson = {
-                type: "dex_orderless_payload",
-                dex_type: "vault_payload",
-                vault_type: "clp_config",
-                nonce: v.nonce.toString(),
-                bootstrap: v.bootstrap,
-            };
-            if (v.primary_account !== undefined) {
-                payload.primary_account = renderVaultSubaccountId(v.primary_account);
-            }
-            if (v.symbol_accounts !== undefined) {
-                payload.symbol_accounts = v.symbol_accounts.map(renderVaultSymbolAccountsEntry);
-            }
-            if (v.allowlist !== undefined) {
-                payload.allowlist = v.allowlist.map(renderVaultClpTraderAllowlistEntry);
-            }
-            return payload;
-        }
-        case VaultTxVariant.ClpManagedAccount: {
-            const v = vaultTx.inner as VaultClpManagedAccountTx;
-            const payload: VaultClpManagedAccountPayloadJson = {
-                type: "dex_orderless_payload",
-                dex_type: "vault_payload",
-                vault_type: "clp_managed_account",
-                nonce: v.nonce.toString(),
-                account: renderVaultSubaccountId(v.account),
-                action: renderManagedAccountAction(v.action),
-            };
-            if (v.memo !== undefined) {
-                payload.memo = v.memo;
-            }
-            return payload;
-        }
-        case VaultTxVariant.ClpTraderAllowlistUpdate: {
-            const v = vaultTx.inner as VaultClpTraderAllowlistUpdateTx;
-            return {
-                type: "dex_orderless_payload",
-                dex_type: "vault_payload",
-                vault_type: "clp_trader_allowlist_update",
-                nonce: v.nonce.toString(),
-                clp_account: renderVaultSubaccountId(v.clp_account),
-                action: renderAllowlistAction(v.action),
-                traders: v.traders.map((trader) => trader.toStringLong()),
-            };
-        }
-        case VaultTxVariant.ClpBatchCreateManagedAccounts: {
-            const v = vaultTx.inner as VaultClpBatchCreateManagedAccountsTx;
-            return {
-                type: "dex_orderless_payload",
-                dex_type: "vault_payload",
-                vault_type: "clp_batch_create_managed_accounts",
-                nonce: v.nonce.toString(),
-                address: v.address.toStringLong(),
-                start_number: v.start_number,
-                count: v.count,
-                user_name_prefix: v.user_name_prefix,
-                memo: v.memo,
-            };
-        }
-        case VaultTxVariant.SetParams: {
-            const v = vaultTx.inner as VaultSetParamsTx;
-            const payload: VaultSetParamsPayloadJson = {
-                type: "dex_orderless_payload",
-                dex_type: "vault_payload",
-                vault_type: "set_params",
-                nonce: v.nonce.toString(),
-                vault_id: v.vault_id.toString(),
-            };
-            if (v.daily_withdraw_limit_bps !== undefined) {
-                payload.daily_withdraw_limit_bps = v.daily_withdraw_limit_bps;
-            }
-            if (v.min_free_balance_ratio_bps !== undefined) {
-                payload.min_free_balance_ratio_bps = v.min_free_balance_ratio_bps;
-            }
-            if (v.lockup_seconds !== undefined) {
-                payload.lockup_seconds = v.lockup_seconds;
-            }
-            if (v.always_proportional_close !== undefined) {
-                payload.always_proportional_close = v.always_proportional_close;
-            }
-            return payload;
-        }
-        case VaultTxVariant.SetStatus: {
-            const v = vaultTx.inner as VaultSetStatusTx;
-            return {
-                type: "dex_orderless_payload",
-                dex_type: "vault_payload",
-                vault_type: "set_status",
-                nonce: v.nonce.toString(),
-                vault_id: v.vault_id.toString(),
-                target_status: renderVaultStatus(v.target_status),
-            };
-        }
-        default:
-            throw unsupportedJsonPayload("Vault payloads (unknown variant)");
-    }
-}
-
-function renderVaultSubaccountId(sub: SubaccountId): VaultSubaccountIdJson {
-    return {
-        address: hex(sub.address),
-        number: sub.number,
-        sub_address: hex(sub.sub_address),
-    };
-}
-
-function renderVaultSymbolAccountsEntry(
-    entry: SymbolAccountsEntry,
-): VaultSymbolAccountsEntryJson {
-    return {
-        symbol_id: entry.symbol_id,
-        accounts: entry.accounts.map(renderVaultSubaccountId),
-    };
-}
-
-function renderVaultClpTraderAllowlistEntry(
-    entry: ClpTraderAllowlistEntry,
-): VaultClpTraderAllowlistEntryJson {
-    return {
-        clp_account: renderVaultSubaccountId(entry.clp_account),
-        traders: entry.traders.map((trader) => trader.toStringLong()),
-    };
-}
-
-function renderManagedAccountAction(
-    action: ManagedAccountAction,
-): VaultManagedAccountActionJson {
-    switch (action) {
-        case ManagedAccountAction.Upsert:
-            return "upsert";
-        case ManagedAccountAction.Disable:
-            return "disable";
-        case ManagedAccountAction.Remove:
-            return "remove";
-        default:
-            throw new Error(`Invalid managed_account action: ${String(action)}`);
-    }
-}
-
-function renderAllowlistAction(
-    action: ClpTraderAllowlistAction,
-): VaultAllowlistActionJson {
-    switch (action) {
-        case ClpTraderAllowlistAction.Add:
-            return "add";
-        case ClpTraderAllowlistAction.Remove:
-            return "remove";
-        default:
-            throw new Error(`Invalid allowlist action: ${String(action)}`);
-    }
-}
-
-function renderVaultStatus(status: VaultStatus): VaultStatusJson {
-    switch (status) {
-        case VaultStatus.Active:
-            return "active";
-        case VaultStatus.Paused:
-            return "paused";
-        case VaultStatus.Closed:
-            return "closed";
-        default:
-            throw new Error(`Invalid target_status: ${String(status)}`);
-    }
-}
-
 function unsupportedJsonPayload(payloadDescription: string): UnsupportedJsonPayloadError {
     return new UnsupportedJsonPayloadError(payloadDescription);
 }
@@ -1471,8 +1088,6 @@ function describeDexOrderlessPayload(dexOrderlessTx: DexOrderlessTx): string {
             return "DexTransfer payloads";
         case DexOrderlessTxVariant.DexAgent:
             return "DexAgent payloads";
-        case DexOrderlessTxVariant.Vault:
-            return "Vault payloads";
         default:
             return "this Dex orderless payload";
     }
